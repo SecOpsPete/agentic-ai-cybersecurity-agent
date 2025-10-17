@@ -90,7 +90,7 @@ To improve visibility, Copilot was instructed to colorize this output:
 <br>
 
 <p align="center">
-  <img src="./images/MaxCapLimit2.png" alt="MaxCapLimit" width="100%">
+  <img src="./images/MaxCapLimit2.png" alt="MaxCapLimit" width="90%">
 </p>
 
 This consistent color scheme improves readability and testing feedback.
