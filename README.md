@@ -29,18 +29,6 @@ In addition, the agent is being expanded with:
 
 These enhancements align AI reasoning with adversarial behavior models, creating a **powerful, defensible framework for AI-driven cybersecurity automation**.
 
-
----
-
-## 🚀 Project Vision
-This repository serves as the **central hub** for a modular, agentic AI platform focused on autonomous threat detection, reasoning, and mitigation.  
-Each submodule expands the agent’s core capabilities, with future plans including:
-
-- Integration of **explainability layers** (trace-based reasoning)  
-- **Threat context enrichment** using Azure OpenAI  
-- Full **containerized orchestration** for scalable simulation  
-- **Human-in-the-loop validation interface** for SOC operators
-
 ---
 
 > *Developed by SecOpsPete — part of the Agentic AI initiative to merge cognitive automation with real-world cybersecurity defense.*
