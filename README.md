@@ -17,8 +17,12 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
 ## 🧩 Security, Guardrails & Enhancements
 This model incorporates a comprehensive set of AI security guardrails and resilience mechanisms, including:
 
-- 🔐 **Password-protected isolation & remediation guardrails**  
-- 🧹 **PII redaction and data sanitization**  
+- 🔐 **Password-protected isolation & remediation guardrails**
+  
+
+- 🔒 **[PII Redaction Framework](./pii-redaction/README.md)**  
+  Obfuscates sensitive data such as email addresses by default and includes optional toggles for usernames and IPs to meet stricter privacy needs without limiting analyst visibility. Configuration changes are made easily within `GUARDRAILS.py` by toggling redaction settings from `False` to `True`.
+
 
 - 📊 **[Row/Byte Cap Enforcement](./row-byte-cap-rate-enforcement/README.md)**  
   Implements safety caps that limit row and payload size across all agent queries to maintain performance stability and prevent excessive token or memory usage. Automatically truncates results beyond 2,000 rows or 1 MB payload and logs structured warnings with colorized console feedback for analyst visibility.
