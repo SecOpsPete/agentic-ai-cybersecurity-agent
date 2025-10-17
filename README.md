@@ -14,7 +14,7 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
 
 ---
 
-## 🧩 Security Guardrails & Enhancements
+## 🧩 Security, Guardrails & Enhancements
 This model incorporates a comprehensive set of AI security guardrails and resilience mechanisms, including:
 
 - 🔐 **Password-protected isolation & remediation guardrails**  
