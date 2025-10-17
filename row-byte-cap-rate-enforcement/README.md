@@ -13,8 +13,6 @@ The cap system is implemented as a reusable helper within `UTILITIES.py` and int
 
 When these thresholds are reached, the agent safely truncates the output, logs a structured warning, and displays a colorized console message. This mechanism helps prevent excessive resource usage and ensures queries remain performant even when analysts request large datasets.
 
-![MaxCapLimit.png](./images/MaxCapLimit1.png)
-
 ---
 
 ## ⚙️ Copilot Prompt — PLAN-ONLY Mode
@@ -89,6 +87,11 @@ Note: Result truncated to max cap
 To improve visibility, Copilot was instructed to colorize this output:
 - **"Note:"** → Yellow (`Fore.LIGHTYELLOW_EX`)  
 - **"Result truncated to max cap"** → Bright Red (`Fore.RED + Style.BRIGHT`)
+<br>
+
+<p align="center">
+  <img src="./images/MaxCapLimit1.png" alt="MaxCapLimit" width="100%">
+</p>
 
 This consistent color scheme improves readability and testing feedback.
 
