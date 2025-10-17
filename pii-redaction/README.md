@@ -171,7 +171,7 @@ python _main.py --self-test
 {"level": "INFO", "event": "PII_REDACTION_CONFIG", "enabled": true, "emails": true, "usernames": false, "ips": false}
 ```
 
-<img src="./images/PII_Redaction.png" alt="PII Redaction Framework" width="80%">
+<img src="./images/PII_Redaction2.png" alt="PII Redaction Framework" width="100%">
 
 > ✅ *This confirms that the redaction framework initializes successfully and applies masking according to the specified configuration.*
 
