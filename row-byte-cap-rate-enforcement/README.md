@@ -90,7 +90,7 @@ To improve visibility, Copilot was instructed to colorize this output:
 <br>
 
 <p align="center">
-  <img src="./images/MaxCapLimit1.png" alt="MaxCapLimit" width="100%">
+  <img src="./images/MaxCapLimit2.png" alt="MaxCapLimit" width="100%">
 </p>
 
 This consistent color scheme improves readability and testing feedback.
@@ -115,8 +115,6 @@ Local verification:
 ```bash
 git log --oneline -n 5
 ```
-
-![GitHubCommits.png](GitHubCommits.png)
 
 ---
 
