@@ -21,7 +21,7 @@ This model incorporates a comprehensive set of AI security guardrails and resili
 - 🧹 **PII redaction and data sanitization**  
 - 📏 **Row/Byte cap rate enforcement**
 
-- 📊 **[Row/Byte Cap Enforcement](./row-byte-cap-enforcement/README.md)**  
+- 📊 **[Row/Byte Cap Enforcement](./row-byte-cap-rate-enforcement/README.md)**  
   Implements safety caps that limit row and payload size across all agent queries to maintain performance stability and prevent excessive token or memory usage. Automatically truncates results beyond 2,000 rows or 1 MB payload and logs structured warnings with colorized console feedback for analyst visibility.
 
 
