@@ -1,6 +1,14 @@
 # 🛡️ Agentic Remediation Guardrails
 
-The **Guardrails Framework** provides a unified safety layer that enforces dry-run protection, confirmation prompts, password-verified overrides, and structured logging for all remediation actions. When a high-confidence threat triggers an isolation workflow, the agent first prompts whether to temporarily disable guardrails, then requires a password before proceeding. The standard isolation prompt still follows, ensuring the operator maintains full control of the action. After completion, guardrails automatically restore, and all decisions are logged to `agent.log`. To maintain clarity in the console, concise colorized summaries highlight key guardrail events — password acceptance, temporary disablement, skipped remediation, and restoration — while detailed JSON logs remain available for full auditing.
+The Guardrails Framework adds a protective layer that operates before the existing isolation confirmation prompt — it does not replace it. This ensures every remediation action, such as VM isolation, passes through a two-stage security check before execution.
+
+First, when a high-confidence threat triggers an isolation workflow, the agent asks whether the operator wants to temporarily disable guardrails. If approved, a password prompt immediately follows, verifying that the user has the necessary permissions to proceed. Only after successful authentication does the agent continue to the familiar prompt —
+
+“Would you like to isolate this VM? (y/n)”
+
+This sequence introduces a double layer of protection: one confirming intent, and another validating authorization.
+
+Once the action completes, guardrails automatically reactivate, restoring the system’s protected state. Every step — from password validation to isolation approval — is recorded in agent.log for full auditability. For quick visibility, concise colorized console summaries highlight key events (password accepted, guardrails disabled, remediation skipped, guardrails restored), while detailed JSON logs ensure traceability and compliance across all operations.
 
 <p align="center">
   <img src="./images/Guardrails2.png" alt="Guardrails Implemented" width="100%">
