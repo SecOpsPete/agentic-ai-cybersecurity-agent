@@ -6,11 +6,17 @@ By default, the framework obfuscates **email addresses** in both console output 
 
 This balance ensures analysts retain full visibility into operational context while maintaining compliance and privacy safeguards. Adjusting the scope of redaction requires only a simple configuration change — toggling the respective setting in `GUARDRAILS.py` from:
 
-"usernames": False,
-"ips": False
-to
-"usernames": True,
-"ips": True
+You’ll find the configuration section around the middle of the file:
+
+```python
+# Master toggle for PII redaction across the pipeline
+REDACTION_ENABLED = True
+
+# Default category toggles used by sanitize_for_llm
+REDACT_EMAILS_DEFAULT = True
+REDACT_USERNAMES_DEFAULT = False
+REDACT_IPS_DEFAULT = False
+```
 
 Once enabled, these fields are automatically sanitized everywhere logs are generated or displayed.
 
