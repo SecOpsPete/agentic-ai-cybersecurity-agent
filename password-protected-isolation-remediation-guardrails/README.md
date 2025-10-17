@@ -3,7 +3,7 @@
 The **Guardrails Framework** provides a unified safety layer that enforces dry-run protection, confirmation prompts, password-verified overrides, and structured logging for all remediation actions. When a high-confidence threat triggers an isolation workflow, the agent first prompts whether to temporarily disable guardrails, then requires a password before proceeding. The standard isolation prompt still follows, ensuring the operator maintains full control of the action. After completion, guardrails automatically restore, and all decisions are logged to `agent.log`. To maintain clarity in the console, concise colorized summaries highlight key guardrail events — password acceptance, temporary disablement, skipped remediation, and restoration — while detailed JSON logs remain available for full auditing.
 
 <p align="center">
-  <img src="./images/.png" alt="MaxCapLimit" width="90%">
+  <img src="./images/Guardrails2.png" alt="Guardrails Implemented" width="90%">
 </p>
 
 ---
