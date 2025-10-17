@@ -20,7 +20,11 @@ This model incorporates a comprehensive set of AI security guardrails and resili
 - 🔐 **Password-protected isolation & remediation guardrails**  
 - 🧹 **PII redaction and data sanitization**  
 - 📏 **Row/Byte cap rate enforcement**  
-- ⏱️ **Time-window input restrictions**  
+
+- ⏱️ **[Time Window Enforcement](./time-window-input-restrictions/README.md)**  
+  Standardizes query time ranges across all modules, enforcing analyst-approved lookback windows to optimize performance and maintain SOC best practices.
+
+
 - 🧰 **Robust error handling and validation logic**
 
 In addition, the agent is being expanded with:
