@@ -1,8 +1,8 @@
 # 🧠 Agentic AI Threat-Hunting Model — ⏱️ Time Window Enforcement
 
-The **Time Window Enforcement** feature ensures that all hunts and queries executed by the AI Agent remain focused, efficient, and scoped within analyst-approved time ranges. This prevents overly broad data pulls, reduces token and compute load, and enforces operational boundaries consistent with SOC best practices.
+The Time Window Enforcement feature ensures that all hunts and queries executed by the AI Agent remain focused, efficient, and restricted to analyst-approved time ranges. This prevents overly broad data pulls, reduces token and compute load, and enforces operational boundaries consistent with SOC best practices.
 
-Base agentic AI model built in The Cyber Range classroom labs, (this and other) customization modules added with assistance from GitHub Copilot Pro and developed in Python.
+Built on the base Agentic AI model originally developed in The Cyber Range classroom labs, this and other customization modules were extended with GitHub Copilot Pro assistance and implemented in Python.
 
 ---
 
