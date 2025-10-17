@@ -17,7 +17,8 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
 ## 🧩 Security, Guardrails & Enhancements
 This model incorporates a comprehensive set of AI security guardrails and resilience mechanisms, including:
 
-- 🔐 **Password-protected isolation & remediation guardrails**
+- 🛡️ **[Agentic Remediation Guardrails](./guardrails-project/README.md)**  
+  Adds a pre-isolation security layer that operates before the standard “Isolate VM (y/n)” prompt, requiring password authentication to confirm authorization. Ensures only approved analysts can execute isolation while maintaining audit logs, dry-run protection, and colorized event summaries for full visibility.
   
 
 - 🔒 **[PII Redaction Framework](./pii-redaction/README.md)**  
