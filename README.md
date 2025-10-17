@@ -27,23 +27,6 @@ In addition, the agent is being expanded with:
 
 These enhancements align AI reasoning with adversarial behavior models, creating a **powerful, defensible framework for AI-driven cybersecurity automation**.
 
----
-
-## 🏗️ Repository Layout
-```
-agentic-ai-cybersecurity-agent/
-│
-├── README.md                     # Overview (this file)
-├── /docs/                        # Diagrams, architecture visuals, and setup guides
-├── /guardrails/                  # Isolation & remediation control logic
-├── /row-byte-caps/               # Data truncation and output-limiting logic
-├── /pii-redaction/               # PII masking and anonymization modules
-├── /time-window-enforcement/     # Query time restriction logic
-├── /validation-and-error-handling/ # Input validation and resilience mechanisms
-├── /mitre-atlas-integration/     # Adversarial mapping logic
-├── /owasp-llm-hardening/         # Secure AI coding & OWASP guardrails
-└── /tests/                       # Shared testing framework
-```
 
 ---
 
