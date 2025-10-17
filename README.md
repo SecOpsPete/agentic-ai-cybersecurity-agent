@@ -6,7 +6,7 @@
 ## 🔍 Overview
 The **Agentic AI Cybersecurity Agent** is an advanced AI model designed to autonomously hunt, analyze, and respond to security threats across enterprise-scale infrastructures.  <br>
 
-Built using **GitHub Copilot Pro** and developed in **Python**, this project integrates directly with **Microsoft Sentinel** and **Defender for Endpoint** via secure API connections to a **Cyber Range** cloud environment ingesting telemetry from over **1,000 endpoints and servers**.
+Base model built in The Cyber Range classroom labs, customizations added with assistance from  **GitHub Copilot Pro** and developed in **Python**, this project integrates directly with **Microsoft Sentinel** and **Defender for Endpoint** via secure API connections to a **Cyber Range** cloud environment ingesting telemetry from over **1,000 endpoints and servers**.
 
 Powered by **Kusto Query Language (KQL)**, the agent processes massive log datasets to detect Indicators of Compromise (IoCs) **300–500 times faster than a human analyst**.  <br>
 
