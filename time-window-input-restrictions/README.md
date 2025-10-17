@@ -159,7 +159,7 @@ git push --tags
 ```
 
 Verify the update on GitHub:
-- 🔗 [Custom AI Threat Hunt Agent](https://github.com/SecOpsPete/Custom_AI_Threat_Hunt_Agent)
+- <your-prvate-github-url-here>
 - Check latest commit for affected files.
 
 Confirm locally:
@@ -167,8 +167,6 @@ Confirm locally:
 ```bash
 git log --oneline -n 5
 ```
-
-![GitHubCommits.png](GitHubCommits.png)
 
 ---
 
