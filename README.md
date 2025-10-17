@@ -19,7 +19,11 @@ This model incorporates a comprehensive set of AI security guardrails and resili
 
 - 🔐 **Password-protected isolation & remediation guardrails**  
 - 🧹 **PII redaction and data sanitization**  
-- 📏 **Row/Byte cap rate enforcement**  
+- 📏 **Row/Byte cap rate enforcement**
+
+- 📊 **[Row/Byte Cap Enforcement](./row-byte-cap-enforcement/README.md)**  
+  Implements safety caps that limit row and payload size across all agent queries to maintain performance stability and prevent excessive token or memory usage. Automatically truncates results beyond 2,000 rows or 1 MB payload and logs structured warnings with colorized console feedback for analyst visibility.
+
 
 - ⏱️ **[Time Window Enforcement](./time-window-input-restrictions/README.md)**  
   Standardizes query time ranges across all modules, enforcing analyst-approved lookback windows to optimize performance and maintain SOC best practices.
