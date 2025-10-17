@@ -13,7 +13,7 @@ The cap system is implemented as a reusable helper within `UTILITIES.py` and int
 
 When these thresholds are reached, the agent safely truncates the output, logs a structured warning, and displays a colorized console message. This mechanism helps prevent excessive resource usage and ensures queries remain performant even when analysts request large datasets.
 
-![MaxCapLimit.png](MaxCapLimit.png)
+![MaxCapLimit.png](./images/MaxCapLimit.png)
 
 ---
 
