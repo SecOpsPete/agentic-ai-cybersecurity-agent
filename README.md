@@ -12,8 +12,6 @@ Powered by **Kusto Query Language (KQL)**, the agent processes massive log datas
 
 When anomalies or threats are confirmed, it can simulate or recommend isolation of affected systems—with human oversight required to validate findings and approve remediation.
 
-## 🧠 Agentic AI Cybersecurity Agent [🔗](https://github.com/SecOpsPete/agentic-ai-cybersecurity-agent)
-
 - 📘 **[Methodology & Setup](https://github.com/SecOpsPete/agentic-ai-cybersecurity-agent/tree/main/methodology-and-setup)**  
   Provides the foundational workflow for improving and hardening the Agentic AI model.    
   **PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG**
