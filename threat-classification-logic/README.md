@@ -122,8 +122,16 @@ Keep all other structures intact.
 ```
 
 📸 *Screenshots for visual confirmation:*  
-- ThreatClassificationLogic.png  
-- ThreatClassificationLogic2.png
+
+<p align="center">
+  <img src="./images/ThreatClassificationLogic.png" alt="Classification Logic" width="90%">
+</p>
+
+<br>
+
+<p align="center">
+  <img src="./images/ThreatClassificationLogic3.png" alt="Classification Output" width="90%">
+</p>
 
 ---
 
