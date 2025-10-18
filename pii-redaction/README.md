@@ -1,12 +1,15 @@
 # 🔒 PII Redaction Framework
 
-The **PII Redaction Framework** provides an extensible system for detecting, masking, and logging personally identifiable information (PII) throughout the AI Agent’s runtime.
+The PII Redaction Framework provides an extensible system for detecting, masking, and logging personally identifiable information (PII) throughout the AI Agent’s runtime.
 
-By default, the framework obfuscates **email addresses** in both console output and persistent logs to prevent accidental disclosure. However, it also includes optional controls for **usernames** and **IP addresses**, which can be enabled when higher levels of data protection are required.
+By default, the framework obfuscates email addresses in console output, persistent logs, and — critically — in any text transmitted to the ChatGPT model (or other connected LLMs). This prevents accidental disclosure of sensitive identifiers outside the local execution environment.
 
-This balance ensures analysts retain full visibility into operational context while maintaining compliance and privacy safeguards. Adjusting the scope of redaction requires only a simple configuration change — toggling the respective setting in `GUARDRAILS.py` from:
+Optional controls for usernames and IP addresses can be enabled when stricter privacy requirements apply, ensuring the framework adapts to varied compliance and data-handling policies.
 
-You’ll find the configuration section around the middle of the file:
+This layered design achieves balance between operational visibility and privacy assurance: analysts retain full access to raw identifiers for threat correlation and detection inside the local environment, while outbound data shared with external LLMs is sanitized automatically.
+
+Adjusting the scope of redaction requires only a simple configuration change — toggling the respective settings in GUARDRAILS.py:
+
 
 ```python
 # Master toggle for PII redaction across the pipeline
@@ -18,9 +21,11 @@ REDACT_USERNAMES_DEFAULT = False
 REDACT_IPS_DEFAULT = False
 ```
 
-Once enabled, these fields are automatically sanitized everywhere logs are generated or displayed.
+Once enabled, these fields are automatically sanitized everywhere sensitive data might appear — in log output, console messages, and outbound model interactions.
 
-The framework supports structured configuration, dynamic toggling, and transparent reporting through JSON-based startup messages, providing a clear and auditable record of which redactions are active. This design protects sensitive information without hindering analysts’ ability to investigate cases effectively.
+The framework supports structured configuration, dynamic toggling, and transparent reporting through JSON-based startup messages, providing a clear and auditable record of which redactions are active.
+
+In short, it protects sensitive information from both human-visible exposure and external model ingestion, without hindering analysts’ ability to investigate and understand security incidents effectively.
 
 ---
 
