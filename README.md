@@ -32,8 +32,12 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
 
 - ⏱️ **[Time Window Enforcement](./time-window-input-restrictions/README.md)**  
   Standardizes query time ranges across all modules, enforcing analyst-approved lookback windows to optimize performance and maintain SOC best practices.
+  
 
-- 🧭 **Confidence-based threat classification logic**
+- 🧠 **[Confidence-Based Threat Classification Logic](./threat-classification-logic/README.md)**  
+  Introduces dual-field interpretation for *confidence* and *verdict* to eliminate false positives and clarify AI decisions.  
+  Isolation and remediation are now triggered **only** when findings are both `malicious` and `high-confidence`, preserving guardrail and dry-run protections while improving analyst visibility.
+  
 
 - 🧰 **Robust error handling and validation logic**
 
