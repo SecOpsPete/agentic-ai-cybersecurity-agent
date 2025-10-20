@@ -22,6 +22,11 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
   Adds a pre-isolation security layer that operates before the standard “Isolate VM (y/n)” prompt, requiring password authentication to confirm authorization. Ensures only approved analysts can execute isolation while maintaining audit logs, dry-run protection, and colorized event summaries for full visibility.
   
 
+- 🧠 **[Confidence-Based Threat Classification Logic](./threat-classification-logic/README.md)**  
+  Introduces dual-field interpretation for *confidence* and *verdict* to eliminate false positives and clarify AI decisions.  
+  Isolation and remediation are now triggered **only** when findings are both `malicious` and `high-confidence`, preserving guardrail and dry-run protections while improving analyst visibility.
+
+
 - 🔒 **[PII Redaction Framework](./pii-redaction/README.md)**  
   Obfuscates sensitive data such as email addresses by default and includes optional toggles for usernames and IPs to meet stricter privacy needs without limiting analyst visibility. Configuration changes are made easily within `GUARDRAILS.py` by toggling redaction settings from `False` to `True`.
 
@@ -32,11 +37,6 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
 
 - ⏱️ **[Time Window Enforcement](./time-window-input-restrictions/README.md)**  
   Standardizes query time ranges across all modules, enforcing analyst-approved lookback windows to optimize performance and maintain SOC best practices.
-  
-
-- 🧠 **[Confidence-Based Threat Classification Logic](./threat-classification-logic/README.md)**  
-  Introduces dual-field interpretation for *confidence* and *verdict* to eliminate false positives and clarify AI decisions.  
-  Isolation and remediation are now triggered **only** when findings are both `malicious` and `high-confidence`, preserving guardrail and dry-run protections while improving analyst visibility.
   
 
 - 🧰 **Robust error handling and validation logic**
