@@ -43,7 +43,7 @@ When anomalies or threats are confirmed, it can simulate or recommend isolation 
 
 In addition, the agent is being expanded with:
 - 🛡️ **OWASP LLM Top 10 Hardening**  
-- 🗺️ **MITRE ATLAS threat-mapping**  
+- 🗺️ **MITRE ATLAS threat-mapping (Adversarial Threat Landscape for Artificial-Intelligence Systems)**  
 
 These enhancements align AI reasoning with adversarial behavior models, creating a **powerful, defensible framework for AI-driven cybersecurity automation**.
 
