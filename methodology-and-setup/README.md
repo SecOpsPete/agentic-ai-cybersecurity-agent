@@ -1,83 +1,80 @@
-# 🧠 AI Agent Improvement/Testing Methodology  
-
-> **Setup and Methodoloty - Start Here**  
-> This is the setup to integrate safeguards, checks, and iterative improvements using **GitHub Copilot Pro** with the **GPT-5.0** model.
-> Based on Josh Madakor’s Cyber Range Baseline AI Agent Model
+# 🧠 AI Agent Improvement / Testing Methodology  
+### Setup and Methodology – Start Here  
+This is the complete standard operating procedure (SOP) for integrating safeguards, version control, and iterative AI agent improvements using **GitHub Copilot Pro** with the **GPT-5.0 model**, based on **Josh Madakor’s Cyber Range Baseline AI Agent Model**.
 
 ---
 
-## 🧩 Overview  
+## 🧩 Overview
+Every section below aligns with the official workflow:  
 
-Every following section includes actionable guidance aligned with **PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG** workflow.  
-Each instruction corresponds to a **WORKING and COMPLETE** `@copilot-agent` prompt block ready for copy/paste into VS Code.
+**PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG**
 
----
-
-## ⚙️ Development Environment Setup  
-
-1. **Install VS Code.**  
-2. **Install GitHub Copilot Extension.**  
-3. **Enable Copilot Agent Mode** — allows Copilot to reason across multiple files.  
-4. *(Optional)* Subscribe to Copilot Pro ($10/mo) for **GPT-5.0** access.  
-5. Ensure your AI project lives on a **local drive** (not OneDrive / Google Drive) for proper Git handling.
+Each step includes actionable guidance and Copilot-ready prompt blocks.
 
 ---
 
-## 🌐 Connect Local Git Project to GitHub  
-
-1. **Verify repository status**
-   ```bash
-   git status
-   ```
-   Confirms version control and lists modified files.
-
-2. **Stage and commit changes**
-   ```bash
-   git add .
-   git commit -m "feat(time-window): integrate get_time_window helper, enforce model consistency, and remove deprecated models"
-   ```
-
-3. **Create new GitHub repository**
-   - Go to GitHub → **New Repository**  
-   - Example name: `Custom_AI_Threat_Hunt_Agent`  
-   - Leave README / .gitignore / license unchecked  
-   - Copy your HTTPS URL (e.g. `https://github.com/YOURNAMEHERE/Custom_AI_Threat_Hunt_Agent.git`)
-
-4. **Link local and remote**
-   ```bash
-   git remote add origin https://github.com/YOURNAMEHERE/Custom_AI_Threat_Hunt_Agent.git
-   git branch -M master
-   git push -u origin master
-   ```
-
-5. **Verify success**
-   - Refresh the repo on GitHub.  
-   - Confirm all project files are visible.  
-
-6. **Future updates**
-   ```bash
-   git add .
-   git commit -m "describe your change"
-   git push
-   ```
+## ⚙️ Development Environment Setup
+1. **Install VS Code**  
+2. **Install GitHub Copilot Extension**  
+3. **Enable Copilot Agent Mode** (for reasoning across multiple files)  
+4. *(Optional)* Subscribe to **Copilot Pro ($10/mo)** for GPT-5.0 access.  
+5. **Ensure your AI project is local** (e.g., `C:\Users\peter\AI_Agent\`) — not on OneDrive or Google Drive, to prevent Git file-locking issues.
 
 ---
 
-## 🛡️ Git Safety & Restore Points  
-
-Initialize Git and capture a clean snapshot before any major change:  
+## 🌐 Connect Local Git Project to GitHub
+**1. Verify Git status**
 ```bash
-git init
+git status
+```
+Shows whether version control is active and lists modified files.
+
+**2. Stage and commit initial changes**
+```bash
+git add .
+git commit -m "Initial commit – AI Agent baseline"
+```
+
+**3. Create a new GitHub repository**
+- Go to GitHub → *New Repository*
+- Example: `Custom_AI_Threat_Hunt_Agent`
+- Leave README / .gitignore / license unchecked  
+- Copy the HTTPS URL (e.g., `https://github.com/YOURNAME/Custom_AI_Threat_Hunt_Agent.git`)
+
+**4. Link local and remote**
+```bash
+git remote add origin https://github.com/YOURNAME/Custom_AI_Threat_Hunt_Agent.git
+git branch -M main
+git push -u origin main
+```
+
+**5. Verify success**
+- Refresh the repo on GitHub  
+- Confirm all project files are visible  
+
+**6. Future updates**
+```bash
+git add .
+git commit -m "describe your change"
+git push
+```
+
+---
+
+## 🛡️ Git Safety & Restore Points
+Before any major change, create a safe snapshot:
+
+```bash
 git add .
 git commit -m "Safe baseline before AI fixes"
 ```
 
-View snapshots:  
+**View snapshots:**
 ```bash
 git log --oneline
 ```
 
-Restore safely:  
+**Restore safely:**
 ```bash
 git revert <commit-id>        # Soft revert a specific change  
 git reset --hard <commit-id>  # Full rollback to earlier state
@@ -85,17 +82,41 @@ git reset --hard <commit-id>  # Full rollback to earlier state
 
 ---
 
-## 🤖 Copilot Commit Discipline  
+## 💾 Snapshots & Tagging Discipline
+Use **tags** to label stable states or major checkpoints:
 
-Follow your **SOP:**  
-> PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG  
+```bash
+git tag -a snapshot-pre-copilot-fix -m "Checkpoint before Copilot isolation logic fix"
+git push --tags
+```
 
-### 🧠 Let Copilot Learn Your Project  
+Tags act as **named save points** you can revert to or reference later.
 
-1. Create `.github/copilot-instructions.md` *(contains your SOP and rules).*  
-2. Create `.vscode/settings.json` to auto-load it each session.
+---
 
-Example `settings.json`:  
+## 🤖 Copilot Commit Discipline
+Follow your SOP strictly:
+
+> **PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG**
+
+Always create a pre-edit commit before letting Copilot modify your code:
+```bash
+git commit -am "Checkpoint before Copilot edit"
+```
+
+After successful testing:
+```bash
+git commit -am "Fix: normalize verdict and confidence comparison"
+git push
+```
+
+---
+
+## 🧠 Let Copilot Learn Your Project
+1. Create `.github/copilot-instructions.md` containing your SOP and workflow rules.  
+2. Add `.vscode/settings.json` to auto-load instructions each session.
+
+**Example settings.json:**
 ```json
 {
   "github.copilot.chat.startupCommands": [
@@ -104,49 +125,23 @@ Example `settings.json`:
 }
 ```
 
-**Result:**  
-- Every time VS Code launches, Copilot Chat automatically reads your instructions.  
-- It performs a **read-only repository scan** to build context — no files are edited.  
-- Your behavioral guardrails and workflow rules are applied automatically.
-
-✅ **No manual startup needed.**
+Result:  
+Each time VS Code launches, Copilot automatically reads your SOP and applies those rules before editing any files.
 
 ---
 
-## 🔄 Manual Context Refresh  
+## 🔄 Manual Context Refresh
+When you change your SOP or repo structure, tell Copilot to refresh context:
 
-Whenever you update project structure or SOP instructions, simply run:  
 ```
-@copilot-agent Please read .github/copilot-instructions.md and follow all listed SOP steps for any new edits.
+@copilot-agent Please re-read .github/copilot-instructions.md and rebuild project context before continuing.
 ```
 
-Copilot will:
-1. Re-read your `.github/copilot-instructions.md` rules.  
-2. Rebuild its internal project map (read-only).  
-3. Re-apply workflow behavior and safety logic.
-
-Think of this as pressing a **“Refresh Context”** button — *no code changes occur.*
-
----
-
-## 🧩 Summary  
-
-| Category | Purpose |
-|:----------|:---------|
-| **Safeguards** | Protect codebase integrity via Git snapshots & commit SOP. |
-| **Agent Improvements** | Incrementally upgrade logic with Copilot-assisted patches. |
-| **OWASP LLM Hardening** | Reduce model exposure to prompt injection & leakage. |
-| **MITRE ATLAS Mapping** | Align detection & response with adversarial behaviors. |
-
-This methodology ensures **stability first**, **security always**, and **auditability throughout** — while letting your Agent evolve responsibly through GPT-powered automation.
+This reinitializes Copilot’s project awareness without changing code.
 
 ---
 
 ## 📌 Author
-
 **Peter Van Rossum**  
-🔗 [LinkedIn](https://www.linkedin.com/in/vanr)  
-💻 [GitHub](https://github.com/SecOpsPete)   
-Version 1.0 · © 2025 SecOpsPete Labs · For educational and research use.
-
----
+[LinkedIn](https://www.linkedin.com) · [GitHub](https://github.com/SecOpsPete)  
+**Version 1.0 · © 2025 SecOpsPete Labs · For educational and research use**
