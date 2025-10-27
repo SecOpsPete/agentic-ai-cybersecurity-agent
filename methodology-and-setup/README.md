@@ -13,18 +13,6 @@ Each instruction corresponds to a **WORKING and COMPLETE** `@copilot-agent` prom
 
 ---
 
-## 🚀 General Project Flow  
-
-| Phase | Focus | Goal |
-|:------|:------|:-----|
-| **Phase 1** | Agentic Improvements & Guardrails | Establish baseline stability, logging, and safety logic. |
-| **Phase 2** | OWASP LLM Top 10 Hardening | Apply category-by-category mitigations. |
-| **Phase 3** | MITRE ATLAS Threat Awareness | Map defenses to adversarial techniques. |
-
-✅ Finish with comprehensive review, testing, and rollback validation.
-
----
-
 ## ⚙️ Development Environment Setup  
 
 1. **Install VS Code.**  
