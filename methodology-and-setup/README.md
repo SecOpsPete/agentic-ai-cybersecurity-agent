@@ -1,15 +1,15 @@
 # 🧠 AI Agent Improvement / Testing Methodology  
-### Setup and Methodology – Start Here  
+### Setup and Methodology 
 This is the complete standard operating procedure (SOP) for integrating safeguards, version control, and iterative AI agent improvements using **GitHub Copilot Pro** with the **GPT-5.0 model**, based on **Josh Madakor’s Cyber Range Baseline AI Agent Model**.
 
 ---
 
 ## 🧩 Overview
-Every section below aligns with the official workflow:  
+This methodology aligns with the structured workflow:
 
 **PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG**
 
-Each step includes actionable guidance and Copilot-ready prompt blocks.
+Each section provides actionable steps to ensure every Copilot-assisted improvement is versioned, reversible, and auditable.
 
 ---
 
@@ -61,52 +61,66 @@ git push
 
 ---
 
-## 🛡️ Git Safety & Restore Points
-Before any major change, create a safe snapshot:
+## 🛡️ Git Safety, Snapshots, and Tagging Discipline
+
+Maintaining stable save points is critical when using AI-assisted code generation.  
+This section combines safety snapshots, commit practices, and tagging into a single, practical workflow.
+
+### 🩵 Why Snapshots Matter
+Snapshots act as **restore points** — each one preserves your project at a safe state before or after major edits. They ensure every Copilot modification is reversible.
+
+### 🩵 When to Create Snapshots (Granular Timing)
+Use this sequence during each Copilot improvement cycle:
+
+1. **Pre‑Edit Snapshot** – *Before Copilot edits*  
+   ```bash
+   git add .
+   git commit -m "snapshot: baseline before Copilot change"
+   ```  
+   Protects your current code from unintended AI edits.
+
+2. **Post‑Review Snapshot** – *After approving Copilot’s proposed change*  
+   ```bash
+   git add .
+   git commit -m "snapshot: reviewed Copilot proposal before testing"
+   ```  
+   Captures exactly what Copilot changed and what you approved.
+
+3. **Post‑Test Commit & Tag** – *After confirming success*  
+   ```bash
+   git add .
+   git commit -m "fix: applied and verified Copilot improvement"
+   git push
+   git tag -a snapshot-post-change -m "Verified Copilot improvement"
+   git push --tags
+   ```  
+   Marks the verified, stable state in both local and remote history.
+
+### 🩵 Viewing and Restoring Snapshots
+If something breaks or you need to inspect history:
 
 ```bash
-git add .
-git commit -m "Safe baseline before AI fixes"
+git log --oneline         # View commit history
+git checkout <commit-id>  # Temporarily view a prior state
+git reset --hard <commit-id>  # Fully revert to earlier snapshot
 ```
 
-**View snapshots:**
-```bash
-git log --oneline
-```
-
-**Restore safely:**
-```bash
-git revert <commit-id>        # Soft revert a specific change  
-git reset --hard <commit-id>  # Full rollback to earlier state
-```
-
----
-
-## 💾 Snapshots & Tagging Discipline
-Use **tags** to label stable states or major checkpoints:
-
-```bash
-git tag -a snapshot-pre-copilot-fix -m "Checkpoint before Copilot isolation logic fix"
-git push --tags
-```
-
-Tags act as **named save points** you can revert to or reference later.
+Tags (e.g., `snapshot-post-change`) let you instantly return to known‑good builds without losing history.
 
 ---
 
 ## 🤖 Copilot Commit Discipline
-Follow your SOP strictly:
+Follow your SOP precisely to maintain integrity and traceability:
 
 > **PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG**
 
-Always create a pre-edit commit before letting Copilot modify your code:
+Before each AI edit:
 ```bash
 git commit -am "Checkpoint before Copilot edit"
 ```
-
 After successful testing:
 ```bash
-git commit -am "Fix: normalize verdict and confidence comparison"
+git commit -am "Fix: verified Copilot logic change"
 git push
 ```
 
@@ -124,9 +138,7 @@ git push
   ]
 }
 ```
-
-Result:  
-Each time VS Code launches, Copilot automatically reads your SOP and applies those rules before editing any files.
+Each time VS Code launches, Copilot automatically reads your instructions and applies them before editing any files.
 
 ---
 
@@ -136,12 +148,11 @@ When you change your SOP or repo structure, tell Copilot to refresh context:
 ```
 @copilot-agent Please re-read .github/copilot-instructions.md and rebuild project context before continuing.
 ```
-
-This reinitializes Copilot’s project awareness without changing code.
+This reinitializes Copilot’s project awareness without altering code.
 
 ---
 
 ## 📌 Author
 **Peter Van Rossum**  
 [LinkedIn](https://www.linkedin.com) · [GitHub](https://github.com/SecOpsPete)  
-**Version 1.0 · © 2025 SecOpsPete Labs · For educational and research use**
+**Version 1.1 · © 2025 SecOpsPete Labs · For educational and research use**
