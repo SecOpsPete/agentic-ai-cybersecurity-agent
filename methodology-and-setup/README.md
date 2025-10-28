@@ -240,12 +240,13 @@ The focus here is *practical functional testing* — verifying that your agent c
 **Typical workflow:**
 ```bash
 # Run the AI Agent interactively
-python EXECUTOR.py
+python _main.py
 
 # Enter representative test queries
-> "List all alerts generated in the past hour."
-> "Summarize threat confidence levels for current detections."
-> "Run dry analysis using the sample event log."
+> "I'm worried that brute force logon attempts have occurred on [DEVICE_NAME] recently."
+> "Check sign-ins for john.smith@example.com and the IP 45[.]76[.]122[.]108 in the last 24 hours."
+> "I am concerned that unauthorized logon attempts have tried to access [DEVICE_NAME] in the last many days from impossible travel location or malware has been installed or malware has been installed or malicious PowerShell processes have executed on [DEVICE_NAME] using encoded commands or network callbacks to download and run payloads.
+."
 ```
 
 **Key validation points:**
