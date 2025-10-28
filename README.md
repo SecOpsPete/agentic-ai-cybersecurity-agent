@@ -14,7 +14,7 @@ When anomalies or threats are confirmed, it can recommend actual isolation of af
 
 - 📘 **[Methodology & Setup](https://github.com/SecOpsPete/agentic-ai-cybersecurity-agent/tree/main/methodology-and-setup)**  
   Provides the foundational workflow for improving and hardening the Agentic AI model.    
-  **PLAN → APPROVAL → EDIT → TEST → KEEP → REVIEW → COMMIT → PUSH → TAG**
+  **PLAN → APPROVAL → EDIT → TEST → REVIEW & COMMIT → PUSH → TAG**
 
 ---
 
