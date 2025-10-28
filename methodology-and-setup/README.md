@@ -4,7 +4,7 @@
 This methodology provides a complete, structured SOP for AI agent improvements using **GitHub Copilot Pro** with **GPT‑5.0**, based on **Josh Madakor’s Cyber Range Baseline AI Agent Model**.  
 
 **Workflow:**  
-### PLAN → APPROVAL → EDIT → TEST → KEEP → REVIEW → COMMIT → PUSH → TAG  
+### PLAN → APPROVAL → EDIT → TEST → KEEP/REVIEW → COMMIT → PUSH → TAG  
 
 Each stage ensures that AI‑assisted changes are versioned, testable, reversible, and auditable.  
 
@@ -260,59 +260,45 @@ python _main.py
 - “Do structured outputs match your defined schema or formatting conventions?”
 ---
 
-## 🧷 **KEEP — Preserve Stable State**
+## 🧷🔍 KEEP & REVIEW — Verify and Preserve Stable State
 
-Once the code **compiles and runs cleanly** but **before formal functional testing**, this phase captures a *known good* build state.  
-At this point, you’ve already completed your **PLAN → APPROVAL → EDIT** phases and verified that syntax, imports, and dependencies are valid.  
+This combined phase ensures your project is **stable, intentional, and ready for a final commit**.
 
-You now have a decision point:  
-- If the changes are **minor or experimental**, you may **skip the snapshot** until after testing.  
-- If the code introduces significant structural changes or merges, it’s wise to **create a KEEP snapshot** to preserve a stable baseline.  
-
-This ensures you can always roll back to a verified pre-testing build if regressions or logic issues surface during testing.
-
-**Typical workflow:**
-```bash
-# Review and confirm all modifications
-git diff
-
-# Stage all verified changes
-git add .
-
-# Commit with a descriptive message marking a pre-testing snapshot
-git commit -m "snapshot: working build before functional testing"
-```
-
-**Key goals during KEEP:**
-- ✅ Confirm the project runs without syntax or dependency errors.  
-- 🧠 Review Copilot or AI-assisted code changes for unintended logic shifts.  
-- 🔍 Verify key modules import successfully and logs initialize cleanly.  
-- 🧩 Decide whether this state merits snapshot preservation or proceed directly to TEST.
+After Copilot has made its improvements and your tests have passed, review all changes to confirm they meet your objectives and do not introduce errors or side effects.  
+If the code has compiled cleanly and functions as expected, capture this verified state so you can safely move forward.
 
 ---
 
-## 🔍 **REVIEW — Inspect and Verify Integrity**
+### 🧩 Typical Workflow
 
-Before committing final code, confirm that **only the intended files** have been modified.  
-This phase acts as a quality gate, ensuring all tracked changes are deliberate, documented, and logically sound before final commit.
-
-**Typical workflow:**
 ```bash
-# List files with modifications
-git diff --name-only
+# Review all modifications made since the last snapshot
+git diff
 
-# Stage only approved files for commit
-git add _main.py EXECUTOR.py
+# Stage verified files for review
+git add .
 
-# Commit with descriptive message capturing scope and purpose
-git commit -m "feat(isolation): restore two-tier guardrail prompts before lookup; add DEVICE_INFERRED and audit logs"
+# Confirm staged changes for accuracy
+git diff --cached
+
+# Create a verified pre-commit snapshot
+git commit -m "snapshot: verified and stable build before final commit"
 ```
 
-**Key goals during REVIEW:**
-- ✅ Verify that no unintended files, temp data, or logs are included.  
-- 🧠 Confirm commit messages are precise and follow semantic versioning or internal conventions.  
-- 🧩 Cross-check that edits align with the approved plan or AI prompt context.  
-- 📘 Preserve repository integrity by committing only verified and approved changes.
+---
+
+### 🎯 Key Goals During KEEP & REVIEW
+
+- ✅ Confirm the project compiles, runs, and behaves as expected after edits.  
+- 🧠 Inspect all modified files to ensure each change aligns with your **planning objectives**.  
+- 🔍 Ensure no stray or unintended files (logs, .pyc, cache, or temp data) are included.  
+- 🧩 Record this verified, stable state as your **final pre-commit snapshot**.  
+- 📘 Prepare the repository for the **COMMIT** phase that follows.  
+
+> 💡 *KEEP + REVIEW combined = “final verification and snapshot.”*  
+> You confirm correctness, capture a restore point, and prepare for your official COMMIT phase.
+
+
 ---
 
 ## 💾 **COMMIT — Record Verified Changes**
