@@ -152,12 +152,6 @@ This snapshot captures the last verified baseline — serving as a restore point
 
 ---
 
-### 🧠 Purpose
-
-The APPROVAL phase establishes a **clean, verifiable starting point** before modification — ensuring all subsequent edits can be audited, compared, or reverted as part of the **Agentic AI development process**.
-
----
-
 ## ✏️ **EDIT — Controlled Copilot Modification**
 
 Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent code changes through natural-language prompts aligned with this SOP.  
