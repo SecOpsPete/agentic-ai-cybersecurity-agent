@@ -196,6 +196,136 @@ git push --tags
 
 ---
 
+## 🧩 GitHub Sync Verification — Guardrail Isolation Commit
+
+### Purpose  
+To verify that local commits made after the **guardrail isolation and audit-logging fixes** are properly synchronized with the remote repository (`origin/master`) and reflected on GitHub.
+
+---
+
+## ✅ Step-by-Step Verification Process
+
+### **Step 1 — Check Current Branch**
+Ensure you are working on the correct branch before pushing any updates.
+```powershell
+git branch
+```
+**Expected output:**
+```
+* master
+```
+*(The asterisk indicates the active branch.)*
+
+---
+
+### **Step 2 — Confirm Remote Repository**
+Verify that the local repository is linked to the correct GitHub remote.
+```powershell
+git remote -v
+```
+**Expected output:**
+```
+origin  https://github.com/SecOpsPete/Custom_AI_Threat_Hunt_Agent.git (fetch)
+origin  https://github.com/SecOpsPete/Custom_AI_Threat_Hunt_Agent.git (push)
+```
+
+---
+
+### **Step 3 — Inspect Latest Local Commit**
+View your most recent commit to confirm the expected guardrail fix.
+```powershell
+git log -1
+```
+**Example output:**
+```
+commit 482250efb5b4af7490059260f0d47d49xxxxxxxx (HEAD -> master, tag: snapshot-post-guardrail-isolation-fix)
+Author: Peter Van Rossum <email@email.com>
+Date:   Mon Oct 27 16:41:24 2025 -0700
+
+    feat(isolation): show guardrail prompts before MDE lookup; treat inferred device as host-scoped; add audit logs
+```
+
+---
+
+### **Step 4 — Compare Local vs Remote**
+Check the latest commit on the remote (`origin/master`) to confirm whether it lags behind.
+```powershell
+git log origin/master -1
+```
+**Example output:**
+```
+commit 98fae383d9098614517d2fd620a12xxxxxxxxxx (tag: v1.4.1, origin/master, origin/HEAD)
+Author: Peter Van Rossum <email@email.com>
+Date:   Fri Oct 17 21:57:11 2025 -0700
+```
+➡️ *If the remote commit hash differs from your local (`482250e...`), it means the new fix has not yet been pushed.*
+
+---
+
+### **Step 5 — Push Latest Commit**
+Synchronize the local master branch with the remote.
+```powershell
+git push origin master
+```
+**Example output:**
+```
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/SecOpsPete/REPO-NAME.git
+   98faxxx..482xxxx  master -> master
+```
+✅ *This confirms your guardrail isolation commit has been successfully uploaded.*
+
+---
+
+### **Step 6 — Verify on GitHub**
+Navigate to your repository:  
+[https://github.com/SecOpsPete/REPO-NAME](https://github.com/SecOpsPete/REPO-NAME)
+
+- Click **Code → Commits**  
+- Confirm the latest entry:
+  ```
+  feat(isolation): show guardrail prompts before MDE lookup; treat inferred device as host-scoped; add audit logs
+  ```
+  appears with today’s date and your username.
+
+---
+
+### **Step 7 — Confirm Tag Synchronization**
+Check that your release tag for this verified snapshot appears on GitHub.
+
+```powershell
+git tag --list
+```
+Expected to include:
+```
+snapshot-post-guardrail-isolation-fix
+```
+
+If missing remotely:
+```powershell
+git push --tags
+```
+
+Then verify under:
+> **GitHub → Releases → Tags → `snapshot-post-guardrail-isolation-fix`**
+
+---
+
+### ✅ Final Verification Outcome
+- `master` branch fully synced with `origin/master`  
+- Commit `482250e` (Guardrail Isolation Fix) visible on GitHub  
+- Tag `snapshot-post-guardrail-isolation-fix` published under Releases  
+
+This confirms your repository’s **guardrail, audit-logging, and isolation logic** are preserved in the remote master history.
+
+---
+
+**Author:** *Peter Van Rossum*  
+**Project:** *Custom AI Threat Hunt Agent*  
+**Last Verified:** *October 27, 2025 – Version v1.4.2 (Guardrail Isolation Fix Sync)*
+
+
+---
 ## 🧠 Let Copilot Learn Your SOP Automatically  
 1. Create `.github/copilot-instructions.md` containing this SOP.  
 2. Add `.vscode/settings.json`:  
