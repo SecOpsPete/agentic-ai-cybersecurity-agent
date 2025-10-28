@@ -70,45 +70,116 @@ Each stage ensures that AI‑assisted changes are versioned, testable, reversibl
 
 ---
 
-## ✏️ EDIT — Controlled Copilot Modification  
-1. Use **Copilot Agent Mode** or **Copilot Chat** in VS Code.  
-2. Instruct Copilot using natural‑language prompts aligned with this SOP.  
-3. Review and approve proposed diffs manually.  
-4. Stage accepted edits:
-   ```bash
-   git add .
-   git commit -m "snapshot: reviewed Copilot proposal before testing"
-   ```
+## ✏️ **EDIT — Controlled Copilot Modification**
+
+Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent code changes through natural-language prompts aligned with this SOP.  
+This phase emphasizes **controlled, human-supervised modification** — where Copilot acts as an assistant, not an autonomous editor.
+
+Each change should be:
+- Clearly explained in plain language before execution.  
+- Focused on a single logical improvement or bug fix.  
+- Reviewed manually for correctness, security, and adherence to project conventions.  
+
+After reviewing the proposed diffs and approving only the intended changes, stage and commit them for traceability.
+
+**Typical workflow:**
+```bash
+# Stage accepted edits after review
+git add .
+
+# Commit to record Copilot-assisted modifications before testing
+git commit -m "snapshot: reviewed Copilot proposal before testing"
+```
+
+**Key goals during EDIT:**
+- ✅ Maintain full control and understanding of each code change.  
+- 🧠 Ensure Copilot suggestions align with the project’s standards and architecture.  
+- 📘 Preserve auditability by committing only approved diffs.  
+- 🧾 Document rationale or reasoning inline when appropriate.
 
 ---
 
-## 🧷 KEEP — Preserve Stable State  
-Once code compiles and runs cleanly:  
+## 🧷 **KEEP — Preserve Stable State (Optional Pre-Testing Snapshot)**
+
+Once the code **compiles and runs cleanly** but **before formal functional testing**, this phase captures a *known good* build state.  
+At this point, you’ve already completed your **PLAN → APPROVAL → EDIT** phases and verified that syntax, imports, and dependencies are valid.  
+
+You now have a decision point:  
+- If the changes are **minor or experimental**, you may **skip the snapshot** until after testing.  
+- If the code introduces significant structural changes or merges, it’s wise to **create a KEEP snapshot** to preserve a stable baseline.  
+
+This ensures you can always roll back to a verified pre-testing build if regressions or logic issues surface during testing.
+
+**Typical workflow:**
 ```bash
+# Review and confirm all modifications
+git diff
+
+# Stage all verified changes
 git add .
+
+# Commit with a descriptive message marking a pre-testing snapshot
 git commit -m "snapshot: working build before functional testing"
 ```
 
+**Key goals during KEEP:**
+- ✅ Confirm the project runs without syntax or dependency errors.  
+- 🧠 Review Copilot or AI-assisted code changes for unintended logic shifts.  
+- 🔍 Verify key modules import successfully and logs initialize cleanly.  
+- 🧩 Decide whether this state merits snapshot preservation or proceed directly to TEST.
+
 ---
 
-## 🧪 TEST — Validate Functionality  
-1. Run automated/unit tests.  
-2. Verify manual behavior (dry‑run, safe mode, logs).  
-3. Continue only after passing results.  
+## 🧪 **TEST — Validate Functionality (Query-Based AI Testing)**
 
----
+This phase confirms that the AI Agent produces expected and consistent results in response to natural-language queries.  
+The focus here is *practical functional testing* — verifying that your agent correctly interprets, processes, and responds according to design.
 
-## 🔍 REVIEW — Inspect and Verify Integrity  
-Before committing final code, confirm **only intended files** changed.  
+**Typical workflow:**
 ```bash
-git diff --name-only
+# Run the AI Agent interactively
+python EXECUTOR.py
+
+# Enter representative test queries
+> "List all alerts generated in the past hour."
+> "Summarize threat confidence levels for current detections."
+> "Run dry analysis using the sample event log."
 ```
-Then stage only approved files:
-```powershell
+
+**Key validation points:**
+- ✅ Confirm the agent executes the correct internal logic paths for each query.  
+- 🧠 Verify outputs align with expected structure (e.g., JSON format, console output, or log entries).  
+- 🔍 Inspect logs for errors, latency spikes, or unintended responses.  
+- 🧩 Continue only after responses are validated against expected behavior and confidence logic.
+
+**Example prompt validation checklist:**
+- “Does the model respond to malformed or ambiguous input gracefully?”  
+- “Are the results consistent with the intended time-window and confidence parameters?”  
+- “Do structured outputs match your defined schema or formatting conventions?”
+---
+
+## 🔍 **REVIEW — Inspect and Verify Integrity**
+
+Before committing final code, confirm that **only the intended files** have been modified.  
+This phase acts as a quality gate, ensuring all tracked changes are deliberate, documented, and logically sound before final commit.
+
+**Typical workflow:**
+```bash
+# List files with modifications
+git diff --name-only
+
+# Stage only approved files for commit
 git add _main.py EXECUTOR.py
+
+# Commit with descriptive message capturing scope and purpose
 git commit -m "feat(isolation): restore two-tier guardrail prompts before lookup; add DEVICE_INFERRED and audit logs"
 ```
 
+**Key goals during REVIEW:**
+- ✅ Verify that no unintended files, temp data, or logs are included.  
+- 🧠 Confirm commit messages are precise and follow semantic versioning or internal conventions.  
+- 🧩 Cross-check that edits align with the approved plan or AI prompt context.  
+- 📘 Preserve repository integrity by committing only verified and approved changes.
 ---
 
 ## 💾 COMMIT — Record Verified Changes  
