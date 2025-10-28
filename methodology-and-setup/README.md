@@ -154,8 +154,17 @@ This snapshot captures the last verified baseline — serving as a restore point
 
 ## ✏️ EDIT — Controlled Copilot Modification
 
-Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent code changes through natural‑language prompts aligned with this SOP.  
-This phase emphasizes **controlled, human‑supervised modification** — where Copilot acts as an assistant, *not* an autonomous editor.
+Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent code changes through natural‑language prompts aligned with this SOP. This phase emphasizes **controlled, human‑supervised modification** — where Copilot acts as an assistant, *not* an autonomous editor.
+
+### 🧠 **How the EDIT Phase Works**
+
+I use the **browser version of ChatGPT** to craft clear, natural-language prompts that align with my **planning objectives**, then paste them directly into **GitHub Copilot** inside VS Code. This step is strictly **planning-driven**, not coding — in accordance with the SOP file Copilot reads during the **APPROVAL** stage. After each edit cycle is *kept* (snapshot preserved), I manually instruct Copilot to **re-read** the `.github/copilot-instructions.md` file to refresh its operational context.  
+
+**The process involves an iterative rhythm of:**
+> ✏️ **Prompt → 🔍 Review → 💾 Keep → ⏭️ Proceed**
+
+Copilot applies changes in small, controlled phases, allowing for multiple rounds of review and verification before moving forward.  
+This ensures every modification remains **auditable, reversible, and intentional** within the Agentic AI workflow.
 
 ---
 
