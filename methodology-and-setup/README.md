@@ -48,7 +48,6 @@ Each stage ensures that AI‑assisted changes are versioned, testable, reversibl
    - Refresh GitHub to confirm file visibility  
 
 ---
----
 
 ## 🧠 PLAN — Define the Objective  
 1. Identify what change is being introduced (guardrail, prompt enforcement, etc.).  
@@ -182,84 +181,60 @@ git commit -m "feat(isolation): restore two-tier guardrail prompts before lookup
 - 📘 Preserve repository integrity by committing only verified and approved changes.
 ---
 
-## 💾 COMMIT — Record Verified Changes  
-1. Use clear, descriptive messages:
-   ```bash
-   git commit -m "fix: validated Copilot improvement in isolation workflow"
-   ```
-2. Avoid temporary or compiled artifacts (`.pyc`, logs).  
+## 💾 **COMMIT — Record Verified Changes**
+
+This phase marks the official recording of verified, intentional changes into version control.  
+Each commit should be **clear, meaningful, and self-explanatory**, serving as a reliable snapshot in your development history.
+
+**Typical workflow:**
+```bash
+# Commit with descriptive, action-oriented message
+git commit -m "fix: validated Copilot improvement in isolation workflow"
+```
+
+**Key goals during COMMIT:**
+- ✅ Use **concise and descriptive messages** that summarize the purpose of the change.  
+- 🧠 Follow consistent commit conventions (e.g., `feat:`, `fix:`, `refactor:`, `docs:`, `test:`).  
+- 🚫 Exclude temporary, compiled, or environment-specific files such as `.pyc`, `.log`, `.DS_Store`, and cache folders.  
+- 📘 Ensure `.gitignore` is up to date to prevent nonessential artifacts from being tracked.
+
+**Purpose:**  
+Preserve a clean, trustworthy repository history that accurately reflects intentional development progress and supports future rollbacks or audits.
 
 ---
 
-## ☁️ PUSH — Publish to Remote Repository  
-Once verified locally:  
+## ☁️ **PUSH — Publish to Remote Repository**
+
+Once all changes are verified locally and committed, push the updates to your remote repository to synchronize your work with GitHub.
+
+**Typical workflow:**
 ```bash
+# Push committed changes to the remote branch
 git push
 ```
 
----
+**Key goals during PUSH:**
+- ✅ Ensure local commits have passed review and testing.  
+- ☁️ Keep the remote repository synchronized with your latest verified state.  
+- 🔐 Confirm credentials or SSH keys are correctly configured before pushing.  
+- 🧩 Maintain consistency between local and remote history to avoid merge conflicts.
 
-### 🧩 GitHub Sync Verification 
-
-### Purpose  
-Verify synchronization between local (`master`) and remote (`origin/master`).  
-
-### Steps  
-1. **Check Current Branch**
-   ```powershell
-   git branch
-   ```
-   Expected: `* master`  
-
-2. **Confirm Remote Repository**
-   ```powershell
-   git remote -v
-   ```
-
-3. **Inspect Latest Local Commit**
-   ```powershell
-   git log -1
-   ```
-
-4. **Compare Local vs Remote**
-   ```powershell
-   git log origin/master -1
-   ```
-
-5. **Push Latest Commit**
-   ```powershell
-   git push origin master
-   ```
-
-6. **Verify on GitHub**
-   - Open your repo and confirm the commit is visible with the correct timestamp.  
-
-7. **Confirm Tag Synchronization**
-   ```powershell
-   git tag --list
-   git push --tags
-   ```
-
-### ✅ Verification Outcome  
-- Local and remote branches synced  
-- Commit visible on GitHub  
-- Tag published under **Releases**  
-
-**Author:** *Peter Van Rossum*  
-**Last Verified:** *October 27, 2025 – v1.4.2 (Guardrail Isolation Fix Sync)*  
+**Purpose:**  
+Finalize the workflow cycle by publishing your verified progress. This ensures your GitHub repository remains a reliable, up-to-date reflection of all validated development activity.
 
 ---
+### 🏷️ **TAG — Version and Snapshot for Rollback**
 
-## 🏷️ TAG — Version and Snapshot for Rollback  
-Tag verified milestones:  
+Tagging creates immutable reference points in your repository history, allowing you to easily roll back or reference specific verified milestones.  
+Use tags to mark major checkpoints, stable builds, or significant AI Agent improvements.
 
-**Manual snapshot:**  
+**Manual snapshot example:**
 ```bash
 git tag -a snapshot-post-change -m "Verified Copilot improvement"
 git push --tags
 ```
 
-**Feature‑specific tag:**  
+**Feature-specific version tag example:**
 ```bash
 git tag v1.3.0-guardrail-restore
 git push --tags
@@ -267,12 +242,74 @@ git push --tags
 
 ---
 
+### 🔁 **Restoring from a Snapshot or Tag (Safe Rollback Procedure)**
+
+When rolling back to a previously verified build or snapshot, always restore in a **non-destructive, auditable way.**  
+This preserves your Git history while allowing you to recover the known good code state cleanly.
+
+**1. List available snapshots (tags):**
+```bash
+git tag
+```
+View all checkpoints you’ve created (e.g., `snapshot-pre-change`, `snapshot-stable-build`, etc.).
+
+**2. Create a new branch from the snapshot:**
+```bash
+git checkout -b restore-snapshot snapshot-pre-change
+```
+This pulls the snapshot into a **new working branch**, so your `main` or `master` branch remains untouched.
+
+**3. Verify the code:**
+Run your normal validation checks:
+```bash
+python EXECUTOR.py
+```
+or  
+```bash
+pytest
+```
+Confirm the snapshot runs as expected and that no corruption or dependency drift occurred.
+
+**4. Merge the verified state back into main:**
+Once you’re confident the snapshot is stable:
+```bash
+git checkout main
+git merge restore-snapshot
+```
+This merges the verified build back into your main branch safely.
+
+**5. Push the restored version to GitHub:**
+```bash
+git push
+```
+If you tagged this restored state as a new version (e.g., `snapshot-restored-<date>`), push the tags too:
+```bash
+git push --tags
+```
+
+**Key advantages of this approach:**
+- Non-destructive (no `--hard` reset).  
+- Maintains a full audit trail of what was restored and when.  
+- Keeps all history intact and GitHub-safe.  
+- Compatible with Copilot Agent Mode and your structured SOP workflow.
+
+---
+
+**Key goals during TAG:**
+- ✅ Mark validated project states for future reference or rollback.  
+- 🧠 Follow consistent versioning (e.g., `v1.2.3` or `snapshot-post-change`).  
+- 📦 Ensure tags correspond to meaningful milestones — not just arbitrary commits.  
+- 🔍 Confirm tags are successfully pushed and visible on GitHub under the *Releases* or *Tags* tab.
+
+**Purpose:**  
+Tags serve as version anchors, ensuring reproducibility and transparency across development stages. They represent clean, verified checkpoints in the Agentic AI workflow.
+
+---
+
 ## 🧩 GitHub Sync Verification 
 
 ### Purpose  
 To verify that local commits made after edits are properly synchronized with the remote repository (`origin/master`) and reflected on GitHub.
-
----
 
 ## ✅ Step-by-Step Verification Process
 
