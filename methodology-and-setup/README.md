@@ -168,27 +168,23 @@ This ensures every modification remains **auditable, reversible, and intentional
 
 ---
 
-### 🧭 Where to Review Changes (VS Code UI vs. Terminal)
+### 🧭 **Where to Review Changes**
 
-You can review changes in **either** place — but they serve different purposes:
+You can review changes in **VS Code** or the **terminal**, but the goal here isn’t deep Git control — it’s simply to confirm that Copilot’s proposed edits make sense and don’t introduce errors.
 
-- **VS Code “Code Section” (Recommended):**  
-  Use the **Source Control** sidebar and the **diff editor** to review, stage, or discard changes **file‑by‑file and hunk‑by‑hunk**. This is the most precise and auditable method.
-  - Open: **View → Source Control** (or `Ctrl+Shift+G`)
-  - Click a file to open a **two‑pane diff** (left = previous, right = working copy)
-  - Right‑click a changed block to **Stage Selected Ranges** or **Discard Selected Changes**
-  - You can also **Stage Line** or **Stage Chunk** for granular control
+#### 🧩 In VS Code (Recommended)
+- Open the **Source Control** sidebar (`Ctrl + Shift + G`).  
+- Click each modified file to view the **before/after diff**.  
+- Read through the changes from top to bottom.  
+- If something looks off, undo or edit it manually.  
+- When the file looks correct, **save your work**.
 
-- **Terminal (Power User / Quick Scan):**  
-  Use Git commands for fast overviews or advanced patch staging.
-  - List changed files: `git status` or `git diff --name-only`
-  - Inspect full diff: `git diff`
-  - Partial staging (interactive): `git add -p`
-  - Unstage a file: `git restore --staged <file>`
-  - Discard a file’s working changes: `git restore <file>` *(careful: destructive)*
-
-**Bottom line:** Do your **detailed review and selective staging in the code diff view**. Use the terminal for quick checks or special cases.
-
+#### 💻 In the Terminal (Optional Quick Check)
+Use these commands if you prefer verifying file changes from the terminal:
+```bash
+git status           # Shows which files changed
+git diff             # Shows what changed inside those files
+```
 ---
 
 ### 🧪 Pre-Review Safety Checks
@@ -211,44 +207,20 @@ Before accepting any Copilot proposal or staging changes:
 
 ---
 
-### 🔍 Review & Selective Staging Workflow (GUI-first)
+### 🔍 Review and Validation Workflow
 
-1. **Trigger Copilot change** (apply proposal in one file at a time).
-2. **Open Source Control** (`Ctrl+Shift+G`), click each modified file.
-3. In the **diff editor**:
-   - Read changes top‑to‑bottom.
-   - Right‑click unwanted hunks → **Discard Selected Changes**.
-   - Right‑click approved hunks → **Stage Selected Ranges**.
-4. Confirm staged vs. unstaged:
-   - **STAGED CHANGES** (top section) should contain **only** the code you intend to commit.
-   - **CHANGES** (lower section) should be empty or contain work you plan to refine further.
-5. Optional deeper audit:
-   - **Search panel** (`Ctrl+Shift+F`) for keywords (e.g., `TODO`, `print(`, debug flags).
-   - If installed, use **GitLens → File History / Line History** for extra context.
+After Copilot proposes changes, review the updated file directly in **VS Code’s main editor**.  
+You do **not** need to stage individual code blocks — focus instead on confirming that the overall logic, comments, and structure align with your intent.
 
----
+1. **Read through the modified file** from top to bottom.  
+2. **Confirm Copilot’s summary or rationale** matches what you requested.  
+3. **Undo any unintended changes** using `Ctrl+Z` or the file’s history panel.  
+4. **KEEP and run** the file once to ensure syntax and behavior are stable.  
+5. When satisfied, take a **snapshot** (`git add . && git commit -m "snapshot: reviewed Copilot proposal"`) before testing.
 
-### 🧾 Terminal-Based Selective Staging (Patch Mode)
+> 💡 *The focus here is review and validation — not granular code staging.*  
+> The goal is to confirm that Copilot’s modifications are safe, purposeful, and aligned with your AI Agent objectives.
 
-If you prefer the terminal for fine‑grained control:
-```bash
-# Review a quick summary
-git diff --name-only
-
-# Interactive patch staging (approve/skip each hunk)
-git add -p
-
-# Verify what's staged
-git diff --cached
-
-# Unstage a file (if needed)
-git restore --staged path/to/file.py
-
-# Discard local changes to a file (destructive)
-git restore path/to/file.py
-```
-
----
 
 ### 🧠 Edit Principles
 
@@ -257,52 +229,6 @@ Each change should be:
 - **Focused** on a single logical improvement or bug fix.
 - **Reviewed manually** for correctness, security, and adherence to project conventions.
 - **Traceable** — rationale captured in commit message or inline comment where helpful.
-
----
-
-### ✅ Typical EDIT Workflow (GUI-first)
-
-```bash
-# 0) Quick scan of what changed (terminal)
-git status
-```
-
-1) **Review diffs** in VS Code Source Control (file by file).  
-2) **Stage only approved hunks** (Stage Selected Ranges).  
-3) **Re-run a quick static/lint check** (if applicable):
-```bash
-# example (adjust to your tools)
-ruff . || flake8 .
-python -m py_compile $(git diff --cached --name-only --diff-filter=ACM | grep -E "\.py$" || true)
-```
-4) **Confirm staged snapshot is clean**:
-```bash
-git diff --cached
-```
-5) **Commit a pre-test snapshot** for traceability:
-```bash
-git commit -m "snapshot: reviewed Copilot proposal before testing"
-```
-
-*(Testing occurs in the next phase. After tests pass, you’ll create your KEEP snapshot.)*
-
----
-
-### 🎯 Key Goals During EDIT
-
-- ✅ Maintain full **control and understanding** of each code change.  
-- 🧠 Ensure Copilot suggestions align with the project’s **standards and architecture**.  
-- 📘 Preserve **auditability** by committing only **approved diffs**.  
-- 🧾 Document rationale or reasoning inline or in the commit message when appropriate.  
-
----
-
-### 🛡️ Guardrail Reminder
-
-- **Do not** merge or refactor unrelated files “because Copilot suggested it.”  
-- **Do not** stage generated assets, logs, or cache artifacts.  
-- **Do** keep changes **small and reviewable** — single-responsibility edits stage best.
-
 
 ---
 
