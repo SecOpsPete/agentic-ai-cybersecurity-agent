@@ -209,7 +209,7 @@ python EXECUTOR.py
 - “Do structured outputs match your defined schema or formatting conventions?”
 ---
 
-## 🧷 **KEEP — Preserve Stable State (Optional Pre-Testing Snapshot)**
+## 🧷 **KEEP — Preserve Stable State**
 
 Once the code **compiles and runs cleanly** but **before formal functional testing**, this phase captures a *known good* build state.  
 At this point, you’ve already completed your **PLAN → APPROVAL → EDIT** phases and verified that syntax, imports, and dependencies are valid.  
