@@ -152,32 +152,148 @@ This snapshot captures the last verified baseline — serving as a restore point
 
 ---
 
-## ✏️ **EDIT — Controlled Copilot Modification**
+## ✏️ EDIT — Controlled Copilot Modification
 
-Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent code changes through natural-language prompts aligned with this SOP.  
-This phase emphasizes **controlled, human-supervised modification** — where Copilot acts as an assistant, not an autonomous editor.
+Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent code changes through natural‑language prompts aligned with this SOP.  
+This phase emphasizes **controlled, human‑supervised modification** — where Copilot acts as an assistant, *not* an autonomous editor.
+
+---
+
+### 🧭 Where to Review Changes (VS Code UI vs. Terminal)
+
+You can review changes in **either** place — but they serve different purposes:
+
+- **VS Code “Code Section” (Recommended):**  
+  Use the **Source Control** sidebar and the **diff editor** to review, stage, or discard changes **file‑by‑file and hunk‑by‑hunk**. This is the most precise and auditable method.
+  - Open: **View → Source Control** (or `Ctrl+Shift+G`)
+  - Click a file to open a **two‑pane diff** (left = previous, right = working copy)
+  - Right‑click a changed block to **Stage Selected Ranges** or **Discard Selected Changes**
+  - You can also **Stage Line** or **Stage Chunk** for granular control
+
+- **Terminal (Power User / Quick Scan):**  
+  Use Git commands for fast overviews or advanced patch staging.
+  - List changed files: `git status` or `git diff --name-only`
+  - Inspect full diff: `git diff`
+  - Partial staging (interactive): `git add -p`
+  - Unstage a file: `git restore --staged <file>`
+  - Discard a file’s working changes: `git restore <file>` *(careful: destructive)*
+
+**Bottom line:** Do your **detailed review and selective staging in the code diff view**. Use the terminal for quick checks or special cases.
+
+---
+
+### 🧪 Pre-Review Safety Checks
+
+Before accepting any Copilot proposal or staging changes:
+
+1. **Confirm only intended files show as modified**
+   ```bash
+   git status
+   ```
+2. **Filter out noise** (pyc, logs, cache). Ensure `.gitignore` includes:
+   ```
+   __pycache__/
+   *.pyc
+   logs/
+   .pytest_cache/
+   .venv/
+   .DS_Store
+   ```
+
+---
+
+### 🔍 Review & Selective Staging Workflow (GUI-first)
+
+1. **Trigger Copilot change** (apply proposal in one file at a time).
+2. **Open Source Control** (`Ctrl+Shift+G`), click each modified file.
+3. In the **diff editor**:
+   - Read changes top‑to‑bottom.
+   - Right‑click unwanted hunks → **Discard Selected Changes**.
+   - Right‑click approved hunks → **Stage Selected Ranges**.
+4. Confirm staged vs. unstaged:
+   - **STAGED CHANGES** (top section) should contain **only** the code you intend to commit.
+   - **CHANGES** (lower section) should be empty or contain work you plan to refine further.
+5. Optional deeper audit:
+   - **Search panel** (`Ctrl+Shift+F`) for keywords (e.g., `TODO`, `print(`, debug flags).
+   - If installed, use **GitLens → File History / Line History** for extra context.
+
+---
+
+### 🧾 Terminal-Based Selective Staging (Patch Mode)
+
+If you prefer the terminal for fine‑grained control:
+```bash
+# Review a quick summary
+git diff --name-only
+
+# Interactive patch staging (approve/skip each hunk)
+git add -p
+
+# Verify what's staged
+git diff --cached
+
+# Unstage a file (if needed)
+git restore --staged path/to/file.py
+
+# Discard local changes to a file (destructive)
+git restore path/to/file.py
+```
+
+---
+
+### 🧠 Edit Principles
 
 Each change should be:
-- Clearly explained in plain language before execution.  
-- Focused on a single logical improvement or bug fix.  
-- Reviewed manually for correctness, security, and adherence to project conventions.  
+- **Clearly explained** by Copilot (ask it to summarize its plan and expected effects).
+- **Focused** on a single logical improvement or bug fix.
+- **Reviewed manually** for correctness, security, and adherence to project conventions.
+- **Traceable** — rationale captured in commit message or inline comment where helpful.
 
-After reviewing the proposed diffs and approving only the intended changes, stage and commit them for traceability.
+---
 
-**Typical workflow:**
+### ✅ Typical EDIT Workflow (GUI-first)
+
 ```bash
-# Stage accepted edits after review
-git add .
+# 0) Quick scan of what changed (terminal)
+git status
+```
 
-# Commit to record Copilot-assisted modifications before testing
+1) **Review diffs** in VS Code Source Control (file by file).  
+2) **Stage only approved hunks** (Stage Selected Ranges).  
+3) **Re-run a quick static/lint check** (if applicable):
+```bash
+# example (adjust to your tools)
+ruff . || flake8 .
+python -m py_compile $(git diff --cached --name-only --diff-filter=ACM | grep -E "\.py$" || true)
+```
+4) **Confirm staged snapshot is clean**:
+```bash
+git diff --cached
+```
+5) **Commit a pre-test snapshot** for traceability:
+```bash
 git commit -m "snapshot: reviewed Copilot proposal before testing"
 ```
 
-**Key goals during EDIT:**
-- ✅ Maintain full control and understanding of each code change.  
-- 🧠 Ensure Copilot suggestions align with the project’s standards and architecture.  
-- 📘 Preserve auditability by committing only approved diffs.  
-- 🧾 Document rationale or reasoning inline when appropriate.
+*(Testing occurs in the next phase. After tests pass, you’ll create your KEEP snapshot.)*
+
+---
+
+### 🎯 Key Goals During EDIT
+
+- ✅ Maintain full **control and understanding** of each code change.  
+- 🧠 Ensure Copilot suggestions align with the project’s **standards and architecture**.  
+- 📘 Preserve **auditability** by committing only **approved diffs**.  
+- 🧾 Document rationale or reasoning inline or in the commit message when appropriate.  
+
+---
+
+### 🛡️ Guardrail Reminder
+
+- **Do not** merge or refactor unrelated files “because Copilot suggested it.”  
+- **Do not** stage generated assets, logs, or cache artifacts.  
+- **Do** keep changes **small and reviewable** — single-responsibility edits stage best.
+
 
 ---
 
