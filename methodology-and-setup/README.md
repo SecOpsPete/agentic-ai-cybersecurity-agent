@@ -56,16 +56,38 @@ Each stage ensures that AI‑assisted changes are versioned, testable, reversibl
 
 ---
 
-## ✅ APPROVAL — Confirm Readiness  
-1. Review repo state and ensure no untracked edits:
-   ```bash
-   git status
-   ```
-2. Create a **pre‑edit snapshot** for rollback safety:
-   ```bash
-   git add .
-   git commit -m "snapshot: baseline before Copilot edit"
-   ```
+### ✅ **APPROVAL — Confirm Readiness (Pre-Edit Baseline Snapshot)**
+
+Before initiating any Copilot-assisted modification or edit phase, verify that the repository is in a **clean, stable state**.  
+This ensures a reliable rollback point and maintains full traceability throughout your workflow.
+
+**1. Review repository status:**
+```bash
+git status
+```
+Confirm that there are no untracked or unintended edits. The working directory should be clean before proceeding.
+
+**2. Create a pre-edit snapshot for rollback safety:**
+```bash
+git add .
+git commit -m "snapshot: baseline before Copilot edit"
+```
+This snapshot captures the last verified baseline — serving as a restore point in case Copilot-generated or manual edits cause instability.
+
+**3. Optional verification (recommended):**
+```bash
+git diff --cached
+```
+Double-check staged changes before finalizing the commit to ensure only intentional files are included.
+
+**Key goals during APPROVAL:**
+- ✅ Verify repo integrity and cleanliness before entering edit mode.  
+- 🧠 Preserve a rollback-ready snapshot that can be restored safely if needed.  
+- 🧩 Maintain an unbroken version history consistent with your structured workflow.  
+- 📘 Ensure all baselines are tagged or referenced clearly for later review or comparison.
+
+**Purpose:**  
+The APPROVAL phase establishes a clean, verifiable starting point before modification — ensuring all subsequent edits can be audited, compared, or reverted as part of the Agentic AI development process.
 
 ---
 
