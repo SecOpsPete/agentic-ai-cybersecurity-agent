@@ -4,7 +4,7 @@
 This methodology provides a complete, structured SOP for AI agent improvements using **GitHub Copilot Pro** with **GPT‑5.0**, based on **Josh Madakor’s Cyber Range Baseline AI Agent Model**.  
 
 **Workflow:**  
-### PLAN → APPROVAL → EDIT → TEST → REVIEW & COMMIT → PUSH → TAG  
+### PLAN → VERIFY → EDIT → TEST → REVIEW & COMMIT → PUSH → TAG  
 
 Each stage ensures that AI‑assisted changes are versioned, testable, reversible, and auditable.  
 
@@ -56,7 +56,7 @@ Each stage ensures that AI‑assisted changes are versioned, testable, reversibl
 
 ---
 
-## ✅ APPROVAL — Confirm Readiness 
+## ✅ VERIFY — Confirm Readiness 
 
 Before initiating any Copilot-assisted modification or edit phase, verify that the repository is in a **clean, stable state**.  
 This ensures a reliable rollback point and maintains full traceability throughout your workflow.
@@ -158,7 +158,7 @@ Use **Copilot Agent Mode** or **Copilot Chat** in VS Code to guide intelligent c
 
 ### 🧠 **How the EDIT Phase Works**
 
-I use the **browser version of ChatGPT** to craft clear, natural-language prompts that align with my **planning objectives**, then paste them directly into **GitHub Copilot** inside VS Code. This step is strictly **planning-driven**, not coding — in accordance with the SOP file Copilot reads during the **APPROVAL** stage. After each edit cycle is *kept* (snapshot preserved), I manually instruct Copilot to **re-read** the `.github/copilot-instructions.md` file to refresh its operational context.  
+I use the **browser version of ChatGPT** to craft clear, natural-language prompts that align with my **planning objectives**, then paste them directly into **GitHub Copilot** inside VS Code. This step is strictly **planning-driven**, not coding — in accordance with the SOP file Copilot reads during the **VERIFY** stage. After each edit cycle is *kept* (snapshot preserved), I manually instruct Copilot to **re-read** the `.github/copilot-instructions.md` file to refresh its operational context.  
 
 **The process involves an iterative rhythm of:**
 > ✏️ **Prompt → 🔍 Review → 💾 Keep → ⏭️ Proceed**
