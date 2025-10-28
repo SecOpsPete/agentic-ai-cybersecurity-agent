@@ -10,7 +10,7 @@ Base model built in Josh Madakor's Cyber Range classroom labs, customizations ad
 
 Powered by **Kusto Query Language (KQL)**, the agent processes massive log datasets to detect Indicators of Compromise (IoCs) **300–500 times faster than a human analyst**.  <br>
 
-When anomalies or threats are confirmed, it can simulate or recommend isolation of affected systems—with human oversight required to validate findings and approve remediation.
+When anomalies or threats are confirmed, it can recommend actual isolation of affected systems—with human oversight required to validate findings and approve remediation.
 
 - 📘 **[Methodology & Setup](https://github.com/SecOpsPete/agentic-ai-cybersecurity-agent/tree/main/methodology-and-setup)**  
   Provides the foundational workflow for improving and hardening the Agentic AI model.    
