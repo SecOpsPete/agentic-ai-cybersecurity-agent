@@ -4,7 +4,7 @@
 This methodology provides a complete, structured SOP for AI agent improvements using **GitHub Copilot Pro** with **GPT‑5.0**, based on **Josh Madakor’s Cyber Range Baseline AI Agent Model**.  
 
 **Workflow:**  
-### PLAN → APPROVAL → EDIT → KEEP → TEST → REVIEW → COMMIT → PUSH → TAG  
+### PLAN → APPROVAL → EDIT → TEST → KEEP → REVIEW → COMMIT → PUSH → TAG  
 
 Each stage ensures that AI‑assisted changes are versioned, testable, reversible, and auditable.  
 
@@ -56,10 +56,76 @@ Each stage ensures that AI‑assisted changes are versioned, testable, reversibl
 
 ---
 
-### ✅ **APPROVAL — Confirm Readiness (Pre-Edit Baseline Snapshot)**
+## ✅ APPROVAL — Confirm Readiness (Pre-Edit Baseline Snapshot)
 
 Before initiating any Copilot-assisted modification or edit phase, verify that the repository is in a **clean, stable state**.  
 This ensures a reliable rollback point and maintains full traceability throughout your workflow.
+
+---
+
+### 🧭 Context Validation (Copilot Initialization)
+
+Before proceeding with baseline verification, ensure that **GitHub Copilot’s project context** is properly initialized.  
+This step ensures that Copilot follows your structured workflow rules during the upcoming edit session.
+
+Create or confirm the presence of this file inside your `.github` directory:
+
+**`.github/copilot-instructions.md`**
+```markdown
+# ⚙️ Copilot Agent Instructions
+
+These instructions tell GitHub Copilot how to behave in this project.  
+They are safe to load automatically — nothing here edits your files by itself.
+
+---
+
+## 🧠 1. Read-Only Context Scan (Automatic)
+
+@copilot-agent  
+Before doing any code edits, scan all files in this workspace **in read-only mode**.
+
+Your goal is to understand how the project is structured — not to change anything.
+
+During the scan:
+- Look at all Python modules and what they do  
+- Note any configuration or JSON files  
+- Read the `.github` folder for context  
+- Identify the project’s main entry point(s)
+
+After scanning, summarize:
+- Major modules and their purposes  
+- Important configuration files  
+- How modules depend on one another  
+
+Then respond with:  
+> “Context loaded successfully. Ready for safe operations.”
+
+---
+
+## ⚙️ 2. Standard Behavior Rules
+
+- Always confirm a **safe snapshot commit** before making code changes.  
+- Propose a **clear commit message** before applying edits.  
+- Never modify more than one file at a time unless I confirm.  
+- Wait for explicit approval before running any `git` commands.  
+- Treat this as part of an **AI Threat-Hunting Agent** codebase — be precise and auditable.  
+- Follow **PEP 8**, preserve inline comments, and keep docstrings concise.  
+- Use **read-only analysis first**; perform edits only after I approve.  
+- Summarize planned changes clearly before executing them.
+
+```
+
+### 🔁 3. Reload Command (Manual Use)
+
+When modifying SOP or repo structure:
+
+```bash
+@copilot-agent Please re-read .github/copilot-instructions.md and rebuild project context before continuing.
+```
+
+This ensures Copilot always reloads your latest workflow context before editing.
+
+### 🧩 Repository Verification
 
 **1. Review repository status:**
 ```bash
@@ -74,20 +140,21 @@ git commit -m "snapshot: baseline before Copilot edit"
 ```
 This snapshot captures the last verified baseline — serving as a restore point in case Copilot-generated or manual edits cause instability.
 
-**3. Optional verification (recommended):**
-```bash
-git diff --cached
-```
-Double-check staged changes before finalizing the commit to ensure only intentional files are included.
+---
 
-**Key goals during APPROVAL:**
+### 🎯 Key Goals During APPROVAL
+
 - ✅ Verify repo integrity and cleanliness before entering edit mode.  
 - 🧠 Preserve a rollback-ready snapshot that can be restored safely if needed.  
 - 🧩 Maintain an unbroken version history consistent with your structured workflow.  
-- 📘 Ensure all baselines are tagged or referenced clearly for later review or comparison.
+- 📘 Ensure all baselines are tagged or referenced clearly for later review or comparison.  
+- 🧭 Confirm Copilot context is active and synchronized with `.github/copilot-instructions.md`.  
 
-**Purpose:**  
-The APPROVAL phase establishes a clean, verifiable starting point before modification — ensuring all subsequent edits can be audited, compared, or reverted as part of the Agentic AI development process.
+---
+
+### 🧠 Purpose
+
+The APPROVAL phase establishes a **clean, verifiable starting point** before modification — ensuring all subsequent edits can be audited, compared, or reverted as part of the **Agentic AI development process**.
 
 ---
 
@@ -120,6 +187,34 @@ git commit -m "snapshot: reviewed Copilot proposal before testing"
 
 ---
 
+## 🧪 **TEST — Validate Functionality (Query-Based AI Testing)**
+
+This phase confirms that the AI Agent produces expected and consistent results in response to natural-language queries.  
+The focus here is *practical functional testing* — verifying that your agent correctly interprets, processes, and responds according to design.
+
+**Typical workflow:**
+```bash
+# Run the AI Agent interactively
+python EXECUTOR.py
+
+# Enter representative test queries
+> "List all alerts generated in the past hour."
+> "Summarize threat confidence levels for current detections."
+> "Run dry analysis using the sample event log."
+```
+
+**Key validation points:**
+- ✅ Confirm the agent executes the correct internal logic paths for each query.  
+- 🧠 Verify outputs align with expected structure (e.g., JSON format, console output, or log entries).  
+- 🔍 Inspect logs for errors, latency spikes, or unintended responses.  
+- 🧩 Continue only after responses are validated against expected behavior and confidence logic.
+
+**Example prompt validation checklist:**
+- “Does the model respond to malformed or ambiguous input gracefully?”  
+- “Are the results consistent with the intended time-window and confidence parameters?”  
+- “Do structured outputs match your defined schema or formatting conventions?”
+---
+
 ## 🧷 **KEEP — Preserve Stable State (Optional Pre-Testing Snapshot)**
 
 Once the code **compiles and runs cleanly** but **before formal functional testing**, this phase captures a *known good* build state.  
@@ -149,34 +244,6 @@ git commit -m "snapshot: working build before functional testing"
 - 🔍 Verify key modules import successfully and logs initialize cleanly.  
 - 🧩 Decide whether this state merits snapshot preservation or proceed directly to TEST.
 
----
-
-## 🧪 **TEST — Validate Functionality (Query-Based AI Testing)**
-
-This phase confirms that the AI Agent produces expected and consistent results in response to natural-language queries.  
-The focus here is *practical functional testing* — verifying that your agent correctly interprets, processes, and responds according to design.
-
-**Typical workflow:**
-```bash
-# Run the AI Agent interactively
-python EXECUTOR.py
-
-# Enter representative test queries
-> "List all alerts generated in the past hour."
-> "Summarize threat confidence levels for current detections."
-> "Run dry analysis using the sample event log."
-```
-
-**Key validation points:**
-- ✅ Confirm the agent executes the correct internal logic paths for each query.  
-- 🧠 Verify outputs align with expected structure (e.g., JSON format, console output, or log entries).  
-- 🔍 Inspect logs for errors, latency spikes, or unintended responses.  
-- 🧩 Continue only after responses are validated against expected behavior and confidence logic.
-
-**Example prompt validation checklist:**
-- “Does the model respond to malformed or ambiguous input gracefully?”  
-- “Are the results consistent with the intended time-window and confidence parameters?”  
-- “Do structured outputs match your defined schema or formatting conventions?”
 ---
 
 ## 🔍 **REVIEW — Inspect and Verify Integrity**
@@ -449,13 +516,6 @@ Then verify under:
 This confirms your repository’s **guardrail, audit-logging, and isolation logic** are preserved in the remote master history.
 
 ---
-
-**Author:** *Peter Van Rossum*  
-**Project:** *Custom AI Threat Hunt Agent*  
-**Last Verified:** *October 27, 2025 – Version v1.4.2 (Guardrail Isolation Fix Sync)*
-
-
----
 ## 🧠 Let Copilot Learn Your SOP Automatically  
 1. Create `.github/copilot-instructions.md` containing this SOP.  
 2. Add `.vscode/settings.json`:  
@@ -466,15 +526,6 @@ This confirms your repository’s **guardrail, audit-logging, and isolation logi
      ]
    }
    ```
-
----
-
-## 🔄 Manual Context Refresh  
-When modifying SOP or repo structure:  
-```
-@copilot-agent Please re-read .github/copilot-instructions.md and rebuild project context before continuing.
-```
-
 ---
 
 ## 📌 Author  
