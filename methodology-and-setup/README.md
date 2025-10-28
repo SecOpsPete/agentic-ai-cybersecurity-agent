@@ -4,7 +4,7 @@
 This methodology provides a complete, structured SOP for AI agent improvements using **GitHub Copilot Pro** with **GPT‑5.0**, based on **Josh Madakor’s Cyber Range Baseline AI Agent Model**.  
 
 **Workflow:**  
-### PLAN → APPROVAL → EDIT → TEST → KEEP/REVIEW → COMMIT → PUSH → TAG  
+### PLAN → APPROVAL → EDIT → TEST → REVIEW & COMMIT → PUSH → TAG  
 
 Each stage ensures that AI‑assisted changes are versioned, testable, reversible, and auditable.  
 
@@ -260,66 +260,95 @@ python _main.py
 - “Do structured outputs match your defined schema or formatting conventions?”
 ---
 
-## 🧷🔍 KEEP & REVIEW — Verify and Preserve Stable State
+## 💾🔍 REVIEW & COMMIT — Final Verification and Commit
 
-This combined phase ensures your project is **stable, intentional, and ready for a final commit**.
+This phase represents the **culmination of the AI Agent improvement workflow** — where verified, intentional changes are finalized and recorded into version control. After completing testing and confirming that all Copilot-assisted modifications behave as intended, this step ensures the repository reflects a **clean, auditable, and logically consistent state**.
 
-After Copilot has made its improvements and your tests have passed, review all changes to confirm they meet your objectives and do not introduce errors or side effects.  
-If the code has compiled cleanly and functions as expected, capture this verified state so you can safely move forward.
+---
+
+### 🧭 Purpose
+
+The goal of REVIEW & COMMIT is to perform one last **structured audit** before officially writing changes to the project history.  
+This is where you pause to confirm that every change introduced since your last baseline serves a clear purpose, meets your planning objectives, and preserves stability.  
+Unlike previous snapshot phases, this is your **final, authoritative commit** — the version that becomes part of your permanent Git history.
 
 ---
 
 ### 🧩 Typical Workflow
 
 ```bash
-# Review all modifications made since the last snapshot
+# 1. Review all modifications made since the last verified snapshot
 git diff
 
-# Stage verified files for review
+# 2. Stage only the verified, intentional files
 git add .
 
-# Confirm staged changes for accuracy
+# 3. Confirm staged changes are correct and contain no noise or temporary files
 git diff --cached
 
-# Create a verified pre-commit snapshot
-git commit -m "snapshot: verified and stable build before final commit"
+# 4. Perform the official commit with a descriptive, action-oriented message
+git commit -m "feat: finalized Copilot improvements and verified build integrity"
 ```
 
 ---
 
-### 🎯 Key Goals During KEEP & REVIEW
+### 🔍 Manual Verification Checklist
 
-- ✅ Confirm the project compiles, runs, and behaves as expected after edits.  
-- 🧠 Inspect all modified files to ensure each change aligns with your **planning objectives**.  
-- 🔍 Ensure no stray or unintended files (logs, .pyc, cache, or temp data) are included.  
-- 🧩 Record this verified, stable state as your **final pre-commit snapshot**.  
-- 📘 Prepare the repository for the **COMMIT** phase that follows.  
+Before performing the commit, confirm the following:
 
-> 💡 *KEEP + REVIEW combined = “final verification and snapshot.”*  
-> You confirm correctness, capture a restore point, and prepare for your official COMMIT phase.
+- ✅ **Functional Validation** — All tests have passed, and the AI Agent performs as expected.  
+- 🧠 **Intent Verification** — Each file modified directly relates to your planned improvement (no stray changes).  
+- 🔍 **Repository Cleanliness** — Ensure no `.pyc`, `.log`, `__pycache__/`, `.pytest_cache/`, or environment-specific artifacts remain.  
+- 🧩 **Documentation Consistency** — Confirm that README, comments, or inline docstrings reflect the latest state of the project.  
+- 🧾 **Commit Clarity** — The message should describe *what* changed and *why*, following a consistent convention (e.g., `feat:`, `fix:`, `refactor:`).
+
+---
+
+### 🧠 Example Commit Message Guidelines
+
+Use descriptive, plain-language commit messages that clearly capture what was verified and why it matters.  
+You don’t need to follow developer prefixes like `feat:` or `fix:` — just make the purpose and scope clear.
+
+**Examples:**
+| Type | Example |
+|------|----------|
+| `snapshot:` | `snapshot: verified Copilot improvement to input validation sequence` |
+| `update:` | `update: reviewed and stabilized AI Agent workflow after testing` |
+| `docs:` | `docs: updated SOP section for REVIEW & COMMIT phase` |
+| `security:` | `security: validated input handling and confirmed guardrail enforcement` |
+| `config:` | `config: adjusted environment settings and re-verified Copilot context` |
+
+> 💡 Tip: Think of each commit message as an **audit log entry** — it should tell the story of *why* this version exists.
+
+For the record, developer-style commit messages would look something like this:
+
+| Type | Example |
+|------|----------|
+| `feat:` | `feat: integrated validated Copilot logic for input guardrails` |
+| `fix:` | `fix: resolved context refresh timing issue in Copilot agent loop` |
+| `refactor:` | `refactor: reorganized agent validation flow for clarity and maintainability` |
+| `docs:` | `docs: updated SOP references and agentic workflow instructions` |
 
 
 ---
 
-## 💾 **COMMIT — Record Verified Changes**
+### 🎯 Key Goals During REVIEW & COMMIT
 
-This phase marks the official recording of verified, intentional changes into version control.  
-Each commit should be **clear, meaningful, and self-explanatory**, serving as a reliable snapshot in your development history.
+- ✅ Confirm the project compiles, runs, and behaves as expected post-edit.  
+- 🧠 Verify that all changes align precisely with planning objectives and Copilot’s intended logic.  
+- 🔍 Eliminate any noise or temporary artifacts from the commit scope.  
+- 🧾 Preserve auditability with clear, structured commit messages.  
+- 📘 Ensure repository integrity and prepare for the **PUSH** and **TAG** phases that follow.
 
-**Typical workflow:**
-```bash
-# Commit with descriptive, action-oriented message
-git commit -m "fix: validated Copilot improvement in isolation workflow"
-```
+---
 
-**Key goals during COMMIT:**
-- ✅ Use **concise and descriptive messages** that summarize the purpose of the change.  
-- 🧠 Follow consistent commit conventions (e.g., `feat:`, `fix:`, `refactor:`, `docs:`, `test:`).  
-- 🚫 Exclude temporary, compiled, or environment-specific files such as `.pyc`, `.log`, `.DS_Store`, and cache folders.  
-- 📘 Ensure `.gitignore` is up to date to prevent nonessential artifacts from being tracked.
+### 🏁 Outcome
 
-**Purpose:**  
-Preserve a clean, trustworthy repository history that accurately reflects intentional development progress and supports future rollbacks or audits.
+By the end of the REVIEW & COMMIT phase, your repository represents a **fully verified, production-grade checkpoint** in the AI Agent’s lifecycle.  
+This version can be confidently pushed, tagged, and referenced as a **trusted baseline** for future iterations.
+
+> 🧠 *REVIEW & COMMIT = final confirmation, documentation, and preservation of verified intelligence within the project’s history.*
+
 
 ---
 
