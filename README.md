@@ -39,7 +39,7 @@ When anomalies or threats are confirmed, it can recommend actual isolation of af
   Standardizes query time ranges across all modules, enforcing analyst-approved lookback windows to optimize performance and maintain SOC best practices.
   
 
-- 🧰 **Robust error handling and validation logic**
+- 🧰 **[Validation Logic](./     )**
 
 In addition, the agent is being expanded with:
 - 🛡️ **OWASP LLM Top 10 Hardening**  
