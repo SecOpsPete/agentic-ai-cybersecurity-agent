@@ -512,6 +512,8 @@ Date:   Mon Oct 27 16:41:24 2025 -0700
 
     feat(isolation): show guardrail prompts before MDE lookup; treat inferred device as host-scoped; add audit logs
 ```
+### ✅ This confirms what your local repo currently believes is the latest code state.
+
 
 ---
 
@@ -526,7 +528,7 @@ commit 98fae383d9098614517d2fd620a12xxxxxxxxxx (tag: v1.4.1, origin/master, orig
 Author: Peter Van Rossum <email@email.com>
 Date:   Fri Oct 17 21:57:11 2025 -0700
 ```
-➡️ *If the remote commit hash differs from your local (`482250e...`), it means the new fix has not yet been pushed.*
+### ➡️ *If the remote commit hash differs from your local (`482250e...`), it means the new fix has not yet been pushed.*
 
 ---
 
@@ -541,7 +543,7 @@ Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
 To https://github.com/SecOpsPete/REPO-NAME.git
    98faxxx..482xxxx  master -> master
 ```
-✅ *This confirms your guardrail isolation commit has been successfully uploaded.*
+✅ *This confirms your guardrail isolation commit has been successfully uploaded.* “Push my local master branch to the remote repository named origin.”
 
 ---
 
