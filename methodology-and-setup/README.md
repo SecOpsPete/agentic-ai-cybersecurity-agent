@@ -50,9 +50,23 @@ Each stage ensures that AI‑assisted changes are versioned, testable, reversibl
 ---
 
 ## 🧠 PLAN — Define the Objective  
-1. Identify what change is being introduced (guardrail, prompt enforcement, etc.).  
-2. Record rationale in issues or dev notes.  
-3. Ensure Copilot understands project scope.  
+
+Before any Copilot prompt is written, this stage ensures **absolute clarity of intent.**  
+In an agentic AI development environment, **ambiguity is the enemy** — GitHub Copilot follows the direction it’s given, so the quality of your results directly reflects the **precision of your plan.**  
+
+Having a **crystal-clear understanding** of the change being introduced (e.g., a new guardrail, prompt-enforcement rule, validation enhancement, or logic refinement) forms the foundation of controlled AI collaboration.  
+This isn’t just a formality — it’s a safeguard against **unintentional drift, redundant edits, or logic regressions.**  
+
+---
+
+### 🔍 Why It Matters  
+
+| Focus | Description |
+|-------|--------------|
+| 🎯 **Direction** | Copilot executes exactly what you describe. If your intent is vague, it improvises. A precise plan ensures deterministic, reproducible code changes. |
+| 🧩 **Orchestration** | Managed intent keeps every modification aligned with the project’s architecture, guardrails, and reasoning flow. |
+| 🧱 **Traceability** | Recording the rationale in issues or dev notes creates a transparent record of *why* each change exists — essential for audits, debugging, and iterative improvement. |
+| 🧠 **Agentic Integrity** | The planning phase reinforces the **human-in-the-loop** principle — you define the goal, Copilot implements it, and together you maintain structured control of the agent’s evolution. |
 
 ---
 
