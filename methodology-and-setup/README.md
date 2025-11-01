@@ -346,23 +346,6 @@ For the record, developer-style commit messages would look something like this:
 
 ---
 
-### 🎯 Key Goals During COMMIT
-
-- ✅ Confirm the project compiles, runs, and behaves as expected post-edit.  
-- 🧠 Verify that all changes align precisely with planning objectives and Copilot’s intended logic.  
-- 🔍 Eliminate any noise or temporary artifacts from the commit scope.  
-- 🧾 Preserve auditability with clear, structured commit messages.  
-- 📘 Ensure repository integrity and prepare for the **PUSH** and **TAG** phases that follow.
-
----
-
-### 🏁 Outcome
-
-By the end of the COMMIT phase, your repository represents a **fully verified, production-grade checkpoint** in the AI Agent’s lifecycle.  
-This version can be confidently pushed, tagged, and referenced as a **trusted baseline** for future iterations.
-
----
-
 ## ☁️ **PUSH — Publish to Remote Repository**
 
 Once all changes are verified locally and committed, push the updates to your remote repository to synchronize your work with GitHub.
