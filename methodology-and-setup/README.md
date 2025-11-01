@@ -291,14 +291,11 @@ Unlike previous snapshot phases, this is your **final, authoritative commit** â€
 ### ðŸ§© Typical Workflow
 
 ```bash
-# 1. Review all modifications made since the last verified snapshot
-git diff
+# 1. Review all modifications made since the last verified snapshot *Optional*
+git diff --cached 
 
 # 2. Stage only the verified, intentional files
 git add .
-
-# 3. Confirm staged changes are correct and contain no noise or temporary files
-git diff --cached
 
 # 4. Perform the official commit with a descriptive, action-oriented message
 git commit -m "feat: finalized Copilot improvements and verified build integrity"
