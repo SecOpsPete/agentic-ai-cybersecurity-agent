@@ -48,7 +48,7 @@ When anomalies or threats are confirmed, it can recommend actual isolation of af
   Standardizes query time ranges across all modules, enforcing analyst-approved lookback windows to optimize performance and maintain SOC best practices.
   
 
-- 🧰 **[Validation Logic](https://www.youtube.com/watch?v=tms3dnZih4U&t=33s)**
+- 🧰 **[Validation Logic - LINK TO VIDEO](https://www.youtube.com/watch?v=tms3dnZih4U&t=33s)** 
   Cleaned up weaknesses in user input validation in the base AI Model. 
 
 
