@@ -21,7 +21,7 @@ When anomalies or threats are confirmed, it can recommend actual isolation of af
 <h3 align="center">🎬 Watch the Video:</h3>
 <p align="center">
   <a href="https://www.youtube.com/watch?v=tms3dnZih4U&t=33s">
-    <img src="https://img.youtube.com/vi/tms3dnZih4U/maxresdefault.jpg" width="400" alt="Watch the video">
+    <img src="https://img.youtube.com/vi/tms3dnZih4U/maxresdefault.jpg" width="350" alt="Watch the video">
   </a>
 </p>
 
